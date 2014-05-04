@@ -10,7 +10,7 @@ import java.util.List;
 public class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
-    private List<String> masks;
+    private List<ProjectFileMask> masks;
     private String intellijIdeaPath;
     private String examplesRoot;
 
@@ -37,7 +37,7 @@ public class EnvironmentSettings implements ISettings {
     }
 
     @Override
-    public List<String> getProjectFileMasks() {
+    public List<ProjectFileMask> getProjectFileMasks() {
         return masks;
     }
 

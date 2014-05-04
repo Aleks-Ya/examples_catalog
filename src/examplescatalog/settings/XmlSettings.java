@@ -31,8 +31,8 @@ public class XmlSettings implements ISettings {
     @XmlAttribute
     private String projectIdFilename;
     @XmlElementWrapper(name = "projectFileMasks")
-    @XmlElement(name = "mask", type = String.class)
-    private List<String> masks;
+    @XmlElement(name = "mask")
+    private List<ProjectFileMask> masks;
 
 
     public static XmlSettings getInstance(String xmlSettingsFile, String xsdFile) throws SettingsException {
@@ -67,7 +67,7 @@ public class XmlSettings implements ISettings {
     }
 
     @Override
-    public List<String> getProjectFileMasks() {
+    public List<ProjectFileMask> getProjectFileMasks() {
         return masks;
     }
 

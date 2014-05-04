@@ -2,8 +2,8 @@
 <!-- todo Подправить XSD-->
 <settings port="2512" projectIdFilename="ExamplesCatalog.properties">
     <projectFileMasks>
-        <mask>*.iml</mask>
-        <mask>*.gradle</mask>
-        <mask>pom.xml</mask>
+        <mask mask="*.iml" priority="3"/>
+        <mask mask="*.gradle" priority="2"/>
+        <mask mask="pom.xml" priority="1"/>
     </projectFileMasks>
 </settings>
