@@ -12,4 +12,21 @@
         <constructor-arg index="0" value="settings.xml"/>
         <constructor-arg index="1" value="settings.xsd"/>
     </bean>
+    <bean id="catalog" class="examplescatalog.catalog.MemoryCatalog">
+        <constructor-arg ref="dirCatalog"/>
+    </bean>
+
+    <bean id="examplesRoot" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="settings"/>
+        <property name="targetMethod" value="getExamplesRoot"/>
+    </bean>
+    <bean id="projectFileMasks" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="settings"/>
+        <property name="targetMethod" value="getProjectFileMasks"/>
+    </bean>
+
+    <bean id="dirCatalog" class="examplescatalog.catalog.DirCatalog">
+        <constructor-arg ref="examplesRoot"/>
+        <constructor-arg ref="projectFileMasks"/>
+    </bean>
 </beans>
