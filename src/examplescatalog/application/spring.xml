@@ -4,7 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="settings" class="examplescatalog.settings.EnvironmentSettings">
-        <constructor-arg ref="xmlSettings"/>
+        <constructor-arg index="0" ref="xmlSettings"/>
+        <constructor-arg index="1" value="EXAMPLES_ROOT"/>
+        <constructor-arg index="2" value="INTELLIJ_IDEA_PATH"/>
     </bean>
     <bean id="xmlSettings" class="examplescatalog.settings.XmlSettings" factory-method="getInstance">
         <constructor-arg index="0" value="settings.xml"/>
