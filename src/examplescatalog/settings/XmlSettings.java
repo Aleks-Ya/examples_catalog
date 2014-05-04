@@ -75,4 +75,14 @@ public class XmlSettings implements ISettings {
     public String getProjectIdFilename() {
         return projectIdFilename;
     }
+
+    @Override
+    public String getExamplesRoot() {
+        return null;// будет добавлено в EnvironmentSettings
+    }
+
+    @Override
+    public String getIntellijIdeaPath() {
+        return null;// будет добавлено в EnvironmentSettings
+    }
 }

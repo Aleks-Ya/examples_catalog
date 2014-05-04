@@ -7,6 +7,12 @@ import java.util.List;
  */
 public interface ISettings {
     int getPort();
+
     List<String> getProjectFileMasks();
+
     String getProjectIdFilename();
+
+    String getExamplesRoot();
+
+    String getIntellijIdeaPath();
 }

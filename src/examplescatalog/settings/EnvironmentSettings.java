@@ -1,5 +1,7 @@
 package examplescatalog.settings;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,8 @@ public class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
     private List<String> masks;
+    private String intellijIdeaPath;
+    private String examplesRoot;
 
     /**
      * @param xmlSettings                 Настройки, загруженные из xml (будем их переопределять).
@@ -19,6 +23,12 @@ public class EnvironmentSettings implements ISettings {
         port = xmlSettings.getPort();
         projectIdFilename = xmlSettings.getProjectIdFilename();
         masks = xmlSettings.getProjectFileMasks();
+
+        String exampleRootEnv = System.getenv(examplesRootEnvironment);
+        examplesRoot = (StringUtils.isEmpty(exampleRootEnv)) ? xmlSettings.getExamplesRoot() : exampleRootEnv;
+
+        String intellijIdeaPathEnv = System.getenv(intellijIdeaPathEnvironment);
+        intellijIdeaPath = (StringUtils.isEmpty(intellijIdeaPathEnv)) ? xmlSettings.getIntellijIdeaPath() : intellijIdeaPathEnv;
     }
 
     @Override
@@ -34,5 +44,15 @@ public class EnvironmentSettings implements ISettings {
     @Override
     public String getProjectIdFilename() {
         return projectIdFilename;
+    }
+
+    @Override
+    public String getExamplesRoot() {
+        return examplesRoot;
+    }
+
+    @Override
+    public String getIntellijIdeaPath() {
+        return intellijIdeaPath;
     }
 }
