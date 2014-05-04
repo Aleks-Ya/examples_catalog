@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- todo Подправить XSD-->
+<settings port="2512" projectIdFilename="ExamplesCatalog.properties">
+    <projectFileMasks>
+        <mask>*.iml</mask>
+        <mask>*.gradle</mask>
+        <mask>pom.xml</mask>
+    </projectFileMasks>
+</settings>
