@@ -3,30 +3,34 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- todo Перенести конфигурацию зависимостей в аннотации -->
+
     <bean id="settings" class="examplescatalog.settings.EnvironmentSettings">
-        <constructor-arg index="0" ref="xmlSettings"/>
+        <constructor-arg index="0">
+            <bean class="examplescatalog.settings.XmlSettings" factory-method="getInstance">
+                <constructor-arg index="0" value="settings.xml"/>
+                <constructor-arg index="1" value="settings.xsd"/>
+            </bean>
+        </constructor-arg>
         <constructor-arg index="1" value="EXAMPLES_ROOT"/>
         <constructor-arg index="2" value="INTELLIJ_IDEA_PATH"/>
     </bean>
-    <bean id="xmlSettings" class="examplescatalog.settings.XmlSettings" factory-method="getInstance">
-        <constructor-arg index="0" value="settings.xml"/>
-        <constructor-arg index="1" value="settings.xsd"/>
-    </bean>
+
     <bean id="catalog" class="examplescatalog.catalog.MemoryCatalog">
-        <constructor-arg ref="dirCatalog"/>
+        <constructor-arg>
+            <bean class="examplescatalog.catalog.dircatalog.DirCatalog">
+                <property name="walker">
+                    <bean class="examplescatalog.catalog.dircatalog.DirTreeWalker">
+                        <constructor-arg value="#{settings.examplesRoot}"/>
+                        <constructor-arg>
+                            <bean class="examplescatalog.catalog.dircatalog.ProjectFileFilter">
+                                <constructor-arg value="#{settings.projectFileMasks}"/>
+                            </bean>
+                        </constructor-arg>
+                    </bean>
+                </property>
+            </bean>
+        </constructor-arg>
     </bean>
 
-    <bean id="examplesRoot" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetObject" ref="settings"/>
-        <property name="targetMethod" value="getExamplesRoot"/>
-    </bean>
-    <bean id="projectFileMasks" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetObject" ref="settings"/>
-        <property name="targetMethod" value="getProjectFileMasks"/>
-    </bean>
-
-    <bean id="dirCatalog" class="examplescatalog.catalog.DirCatalog">
-        <constructor-arg ref="examplesRoot"/>
-        <constructor-arg ref="projectFileMasks"/>
-    </bean>
 </beans>

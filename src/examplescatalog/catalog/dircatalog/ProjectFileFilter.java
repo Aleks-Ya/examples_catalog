@@ -1,25 +1,29 @@
-package examplescatalog.catalog;
+package examplescatalog.catalog.dircatalog;
 
 import examplescatalog.settings.ProjectFileMask;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Файловый фильт проектных файлов.
  */
-public class ProjectFileFilter implements FilenameFilter {
-    private List<ProjectFileMask> masks;
+class ProjectFileFilter implements FilenameFilter {
+    private List<Pattern> masks = new ArrayList<>();
 
     public ProjectFileFilter(List<ProjectFileMask> masks) {
-        this.masks = masks;
+        for (ProjectFileMask mask : masks) {
+            this.masks.add(Pattern.compile(mask.getMask()));
+        }
     }
 
     @Override
     public boolean accept(File dir, String name) {
-        for (ProjectFileMask mask : masks) {
-            if (name.matches(mask.getMask())) {
+        for (Pattern mask : masks) {
+            if (mask.matcher(name).matches()) {
                 return true;
             }
         }

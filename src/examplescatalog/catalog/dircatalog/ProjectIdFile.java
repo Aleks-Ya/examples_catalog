@@ -1,4 +1,4 @@
-package examplescatalog.catalog;
+package examplescatalog.catalog.dircatalog;
 
 import examplescatalog.command.ICommand;
 
@@ -7,7 +7,7 @@ import java.io.File;
 /**
  * Идентификационный файл проекта.
  */
-public class ProjectIdFile {
+class ProjectIdFile {
     public ProjectIdFile(File projectFile) {
     }
 
