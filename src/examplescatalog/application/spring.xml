@@ -33,4 +33,8 @@
         </constructor-arg>
     </bean>
 
+    <bean id="server" class="examplescatalog.server.Server" init-method="start">
+        <constructor-arg value="#{settings.port}"/>
+    </bean>
+
 </beans>
