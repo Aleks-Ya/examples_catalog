@@ -1,6 +1,6 @@
 package examplescatalog.command;
 
-import examplescatalog.catalog.dircatalog.Project;
+import examplescatalog.catalog.Project;
 
 import java.awt.Desktop;
 import java.io.File;

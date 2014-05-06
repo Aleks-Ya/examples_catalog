@@ -1,6 +1,7 @@
 package examplescatalog.catalog.dircatalog;
 
 import examplescatalog.catalog.ICatalog;
+import examplescatalog.catalog.Project;
 
 import java.util.List;
 
@@ -9,19 +10,19 @@ import java.util.List;
  * todo Читать в отдельном потоке
  */
 public class DirCatalog implements ICatalog {
-    private DirTreeWalker walker;
+    private ProjectList projectList;
+
+    public DirCatalog(ProjectList projectList) {
+        this.projectList = projectList;
+    }
 
     @Override
     public Project getProjectById(String projectId) {
-        return walker.getProjectMap().get(projectId);
+        return projectList.getProjectMap().get(projectId);
     }
 
     @Override
     public List<Project> getAllProjects() {
-        return walker.getProjectList();
-    }
-
-    public void setWalker(DirTreeWalker walker) {
-        this.walker = walker;
+        return projectList.getProjectList();
     }
 }

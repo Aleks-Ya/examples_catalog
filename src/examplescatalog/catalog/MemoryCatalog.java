@@ -1,7 +1,5 @@
 package examplescatalog.catalog;
 
-import examplescatalog.catalog.dircatalog.Project;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

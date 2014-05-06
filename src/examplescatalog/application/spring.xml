@@ -19,16 +19,27 @@
     <bean id="catalog" class="examplescatalog.catalog.MemoryCatalog">
         <constructor-arg>
             <bean class="examplescatalog.catalog.dircatalog.DirCatalog">
-                <property name="walker">
-                    <bean class="examplescatalog.catalog.dircatalog.DirTreeWalker" init-method="process">
-                        <constructor-arg value="#{settings.examplesRoot}"/>
+                <constructor-arg>
+                    <bean class="examplescatalog.catalog.dircatalog.ProjectList">
                         <constructor-arg>
-                            <bean class="examplescatalog.catalog.dircatalog.ProjectFileFilter">
-                                <constructor-arg value="#{settings.projectFileMasks}"/>
+                            <bean class="examplescatalog.catalog.dircatalog.DirTreeWalker" init-method="process">
+                                <constructor-arg value="#{settings.examplesRoot}"/>
+                                <constructor-arg>
+                                    <bean class="examplescatalog.catalog.dircatalog.ProjectFileFilter">
+                                        <constructor-arg value="#{settings.projectFileMasks}"/>
+                                    </bean>
+                                </constructor-arg>
+                                <constructor-arg>
+                                    <bean class="examplescatalog.catalog.dircatalog.ProjectIdFileFilter">
+                                        <constructor-arg value="#{settings.projectIdFilename}"/>
+                                    </bean>
+                                </constructor-arg>
+                                <constructor-arg value="#{settings.projectIdFilename}"/>
+                                <constructor-arg value="explorerCommand"/>
                             </bean>
                         </constructor-arg>
                     </bean>
-                </property>
+                </constructor-arg>
             </bean>
         </constructor-arg>
     </bean>

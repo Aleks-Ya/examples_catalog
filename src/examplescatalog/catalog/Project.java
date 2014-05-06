@@ -1,4 +1,4 @@
-package examplescatalog.catalog.dircatalog;
+package examplescatalog.catalog;
 
 import java.io.File;
 

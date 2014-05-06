@@ -1,22 +1,33 @@
 package examplescatalog.catalog.dircatalog;
 
+import examplescatalog.catalog.Project;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 /**
  * Папка на диске.
  */
-public class Folder {
+class Folder {
     private File dir;
     private FilenameFilter projectFileFilter;
+    private ProjectIdFileFilter projectIdFileFilter;
+    private String projectIdFilename;
+    private String defaultCommand;
+    private ProjectIdFile projectIdFile;
 
-    public Folder(File dir, FilenameFilter projectFileFilter) {
+    public Folder(File dir, FilenameFilter projectFileFilter, ProjectIdFileFilter projectIdFileFilter,
+                  String projectIdFilename, String defaultCommand) throws IOException {
         this.dir = dir;
         this.projectFileFilter = projectFileFilter;
+        this.projectIdFileFilter = projectIdFileFilter;
+        this.projectIdFilename = projectIdFilename;
+        this.defaultCommand = defaultCommand;
+
+        File[] projectIdFiles = dir.listFiles(projectIdFileFilter);
+        projectIdFile = (projectIdFiles.length > 0) ? new ProjectIdFile(projectIdFiles[0]) : null;
     }
 
     /**
@@ -26,11 +37,31 @@ public class Folder {
         return ArrayUtils.isEmpty(dir.listFiles(projectFileFilter));
     }
 
-    public List<ProjectIdFile> getProjectIdFiles() {
-        List<ProjectIdFile> result = new ArrayList<>();
-        for (File projectFile : dir.listFiles(projectFileFilter)) {
-            result.add(new ProjectIdFile(projectFile));
-        }
-        return result;
+    /**
+     * В проектной папке есть идентификационный файл проекта?
+     */
+    public boolean hasProjectIdFile() {
+        return projectIdFile != null;
     }
+
+    public void createProjectIdFile(String projectId) throws IOException {
+        File newProjectIdFile = new File(dir, projectIdFilename);
+        projectIdFile = new ProjectIdFile(projectId, newProjectIdFile, defaultCommand);
+    }
+
+    public ProjectIdFile getProjectIdFile() {
+        return projectIdFile;
+    }
+
+    public Project getProject() {
+        return new Project(dir, getProjectIdFile().getId());
+    }
+
+//    public List<File> getProjectFiles() {
+//        List<File> result = new ArrayList<>();
+//        for (File projectFile : dir.listFiles(projectFileFilter)) {
+//            result.add(new Project(dir, projectFile));
+//        }
+//        return result;
+//    }
 }

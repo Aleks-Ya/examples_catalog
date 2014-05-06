@@ -1,7 +1,7 @@
 package examplescatalog.server;
 
 import examplescatalog.catalog.ICatalog;
-import examplescatalog.catalog.dircatalog.Project;
+import examplescatalog.catalog.Project;
 import examplescatalog.command.ICommand;
 
 import java.io.BufferedReader;
@@ -32,7 +32,7 @@ class RequestProcessor implements Runnable {
             reader.close();
 
             String[] strings = head.split(" ");
-            String projectId = strings[1];
+            String projectId = strings[1].substring(1);
             Project project = catalog.getProjectById(projectId);
 
             ICommand command = commandMap.get("explorerCommand");
