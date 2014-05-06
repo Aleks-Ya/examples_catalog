@@ -1,18 +1,27 @@
 package examplescatalog.server;
 
+import examplescatalog.catalog.ICatalog;
+import examplescatalog.catalog.dircatalog.Project;
+import examplescatalog.command.ICommand;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Map;
 
 /**
  * Обработчик запроса к серверу.
  */
 class RequestProcessor implements Runnable {
-    private final Socket socket;
+    private Socket socket;
+    private Map<String, ICommand> commandMap;
+    private ICatalog catalog;
 
-    RequestProcessor(Socket socket) {
+    RequestProcessor(Socket socket, Map<String, ICommand> commandMap, ICatalog catalog) {
         this.socket = socket;
+        this.commandMap = commandMap;
+        this.catalog = catalog;
     }
 
     @Override
@@ -23,8 +32,11 @@ class RequestProcessor implements Runnable {
             reader.close();
 
             String[] strings = head.split(" ");
-            String commandStr = strings[1];
-            System.out.println(commandStr);
+            String projectId = strings[1];
+            Project project = catalog.getProjectById(projectId);
+
+            ICommand command = commandMap.get("explorerCommand");
+            command.execute(project);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -10,20 +10,21 @@ public class Project {
     private String name;
     private File folder;
 
-    public Project(File folder) {
+    public Project(File folder, String projectId) {
         this.folder = folder;
+        id = projectId;
+        name = folder.getName();
     }
 
     public String getId() {
-        return null;
+        return id;
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
     public File getFolder() {
-        return null;
+        return folder;
     }
-
 }
