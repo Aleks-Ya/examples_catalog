@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Обходит дерево каталогов в поисках проектных файлов.
+ * //todo Добавить исключения для папок .git, classes, out, .gradle., .idea
  */
 class DirTreeWalker {
     private static final DirFileFilter dirFileFilter = new DirFileFilter();
