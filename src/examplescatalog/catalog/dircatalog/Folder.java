@@ -37,7 +37,7 @@ class Folder {
      * Данная папка содержит проект примера?
      */
     public boolean isProjectFolder() {
-        return ArrayUtils.isEmpty(dir.listFiles(projectFileFilter));
+        return !ArrayUtils.isEmpty(dir.listFiles(projectFileFilter));
     }
 
     /**
