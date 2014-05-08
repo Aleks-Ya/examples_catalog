@@ -5,9 +5,9 @@ sourceSets.test.java.srcDirs 'test'
 
 dependencies {
     /*todo Перевести на Spring 4*/
-    /*todo Перевести на slf4j и Log4J 2*/
-    compile 'log4j:log4j:1.2.17', 'org.springframework:spring-context:3.2.4.RELEASE',
-            'org.apache.commons:commons-lang3:3.3.2', 'org.apache.commons:commons-collections4:4.0'
+    compile 'org.slf4j:slf4j-api:1.7.7', 'org.slf4j:slf4j-log4j12:1.7.7', 'log4j:log4j:1.2.17',
+            'org.springframework:spring-context:3.2.4.RELEASE', 'org.apache.commons:commons-lang3:3.3.2',
+            'org.apache.commons:commons-collections4:4.0'
 }
 repositories {
     mavenLocal()

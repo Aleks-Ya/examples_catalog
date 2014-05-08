@@ -1,5 +1,8 @@
 package examplescatalog.catalog.dircatalog;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import java.util.List;
  * //todo Добавить исключения для папок .git, classes, out, .gradle., .idea
  */
 class DirTreeWalker {
+    private static final Logger LOG = LoggerFactory.getLogger(DirTreeWalker.class);
     private static final DirFileFilter dirFileFilter = new DirFileFilter();
     private File rootDir;
     private ProjectFileFilter projectFileFilter;
@@ -47,8 +51,7 @@ class DirTreeWalker {
                 process(subDir);
             }
         } catch (IOException e) {
-            //todo логгер
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 }

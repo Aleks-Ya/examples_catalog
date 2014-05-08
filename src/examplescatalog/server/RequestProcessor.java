@@ -3,6 +3,8 @@ package examplescatalog.server;
 import examplescatalog.catalog.ICatalog;
 import examplescatalog.catalog.Project;
 import examplescatalog.command.ICommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.Map;
  * Обработчик запроса к серверу.
  */
 class RequestProcessor implements Runnable {
+    private static final Logger LOG = LoggerFactory.getLogger(RequestProcessor.class);
     private Socket socket;
     private Map<String, ICommand> commandMap;
     private ICatalog catalog;
@@ -33,12 +36,13 @@ class RequestProcessor implements Runnable {
 
             String[] strings = head.split(" ");
             String projectId = strings[1].substring(1);
+            LOG.info("Received project id: {}", projectId);
             Project project = catalog.getProjectById(projectId);
 
             ICommand command = commandMap.get("explorerCommand");
             command.execute(project);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 }

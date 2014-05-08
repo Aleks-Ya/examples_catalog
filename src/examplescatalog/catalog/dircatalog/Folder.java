@@ -2,6 +2,8 @@ package examplescatalog.catalog.dircatalog;
 
 import examplescatalog.catalog.Project;
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -11,6 +13,7 @@ import java.io.IOException;
  * Папка на диске.
  */
 class Folder {
+    private static final Logger LOG = LoggerFactory.getLogger(Folder.class);
     private File dir;
     private FilenameFilter projectFileFilter;
     private ProjectIdFileFilter projectIdFileFilter;
@@ -45,6 +48,7 @@ class Folder {
     }
 
     public void createProjectIdFile(String projectId) throws IOException {
+        LOG.info("Create project id file in {}", dir.getAbsolutePath());
         File newProjectIdFile = new File(dir, projectIdFilename);
         projectIdFile = new ProjectIdFile(projectId, newProjectIdFile, defaultCommand);
     }

@@ -2,6 +2,8 @@ package examplescatalog.server;
 
 import examplescatalog.catalog.ICatalog;
 import examplescatalog.command.ICommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,6 +15,7 @@ import java.util.concurrent.Executor;
  * Сервер слушает порт, принимает http-запросы и вызывает соответствующие команды.
  */
 public class Server {
+    private static final Logger LOG = LoggerFactory.getLogger(Server.class);
     private int port;
     private Executor executor;
     private ICatalog catalog;
@@ -26,6 +29,7 @@ public class Server {
     }
 
     public void start() {
+        LOG.info("Server started");
         try {
             ServerSocket serverSocket = new ServerSocket(port);
             while (true) {
@@ -33,7 +37,7 @@ public class Server {
                 executor.execute(new RequestProcessor(socket, commandMap, catalog));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(), e);
         }
     }
 }
