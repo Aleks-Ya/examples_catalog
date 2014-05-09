@@ -15,7 +15,7 @@ public class FileSystemCatalog implements ICatalog {
     private Map<String, Project> projects = new HashMap<>();
 
     @Override
-    public Project getProjectById(String projectId) {
+    public Project getPrById(String projectId) {
         return projects.get(projectId);
     }
 

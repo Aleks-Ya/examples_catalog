@@ -9,11 +9,11 @@ import java.util.Random;
 /**
  * Генератор индетификаторов для проектов.
  */
-class ProjectIdGenerator {
+class PrIdGenerator {
     private final List<Integer> projectIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();
 
-    public void setProjectsWithId(List<Project> prWithId) {
+    public void setPrWithId(List<Project> prWithId) {
         for (Project pr : prWithId) {
             projectIdList.add(Integer.valueOf(pr.getId()));
         }

@@ -4,9 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
 public class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
-    private List<ProjectFileMask> masks;
+    private List<PrFileMask> masks;
     private String intellijIdeaPath;
     private String examplesRoot;
     @Autowired
@@ -48,7 +46,7 @@ public class EnvironmentSettings implements ISettings {
     }
 
     @Override
-    public List<ProjectFileMask> getProjectFileMasks() {
+    public List<PrFileMask> getProjectFileMasks() {
         return masks;
     }
 

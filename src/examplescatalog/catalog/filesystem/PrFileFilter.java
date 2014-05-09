@@ -1,6 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
-import examplescatalog.settings.ProjectFileMask;
+import examplescatalog.settings.PrFileMask;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,22 +15,22 @@ import java.util.regex.Pattern;
  * Файловый фильт проектных файлов.
  */
 @Component("pff")
-class ProjectFileFilter implements FilenameFilter {
+class PrFileFilter implements FilenameFilter {
     private List<Pattern> masks = new ArrayList<>();
     @Value("#{settings.projectFileMasks}")
-    private List<ProjectFileMask> projectFileMasks;
+    private List<PrFileMask> prFileMasks;
 
-    ProjectFileFilter() {
+    PrFileFilter() {
     }
 
-    ProjectFileFilter(List<ProjectFileMask> projectFileMasks) {
-        this.projectFileMasks = projectFileMasks;
+    PrFileFilter(List<PrFileMask> prFileMasks) {
+        this.prFileMasks = prFileMasks;
         init();
     }
 
     @PostConstruct
     private void init() {
-        for (ProjectFileMask mask : projectFileMasks) {
+        for (PrFileMask mask : prFileMasks) {
             this.masks.add(Pattern.compile(mask.getMask()));
         }
     }

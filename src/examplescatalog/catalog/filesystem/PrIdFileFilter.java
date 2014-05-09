@@ -6,10 +6,10 @@ import java.io.FilenameFilter;
 /**
  * Фильтрует идентификационный файл проекта.
  */
-class ProjectIdFileFilter implements FilenameFilter {
+class PrIdFileFilter implements FilenameFilter {
     private String projectIdFilename;
 
-    public ProjectIdFileFilter(String projectIdFilename) {
+    public PrIdFileFilter(String projectIdFilename) {
         this.projectIdFilename = projectIdFilename;
     }
 

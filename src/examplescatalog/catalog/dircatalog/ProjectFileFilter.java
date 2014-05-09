@@ -1,6 +1,6 @@
 package examplescatalog.catalog.dircatalog;
 
-import examplescatalog.settings.ProjectFileMask;
+import examplescatalog.settings.PrFileMask;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
 class ProjectFileFilter implements FilenameFilter {
     private List<Pattern> masks = new ArrayList<>();
 
-    public ProjectFileFilter(List<ProjectFileMask> masks) {
-        for (ProjectFileMask mask : masks) {
+    public ProjectFileFilter(List<PrFileMask> masks) {
+        for (PrFileMask mask : masks) {
             this.masks.add(Pattern.compile(mask.getMask()));
         }
     }

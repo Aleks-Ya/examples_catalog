@@ -37,7 +37,7 @@ class RequestProcessor implements Runnable {
             String[] strings = head.split(" ");
             String projectId = strings[1].substring(1);
             LOG.info("Received project id: {}", projectId);
-            Project project = catalog.getProjectById(projectId);
+            Project project = catalog.getPrById(projectId);
 
             ICommand command = commandMap.get("explorerCommand");
             command.execute(project);

@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 /**
  * Маска имени файла проекта.
  */
-public class ProjectFileMask {
+public class PrFileMask {
     @XmlAttribute
     private String mask;
     @XmlAttribute

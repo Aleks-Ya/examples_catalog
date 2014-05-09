@@ -8,7 +8,7 @@ import java.util.List;
 public interface ISettings {
     int getPort();
 
-    List<ProjectFileMask> getProjectFileMasks();
+    List<PrFileMask> getProjectFileMasks();
 
     String getProjectIdFilename();
 

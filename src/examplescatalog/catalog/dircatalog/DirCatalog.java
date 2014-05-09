@@ -17,7 +17,7 @@ public class DirCatalog implements ICatalog {
     }
 
     @Override
-    public Project getProjectById(String projectId) {
+    public Project getPrById(String projectId) {
         return projectList.getProjectMap().get(projectId);
     }
 

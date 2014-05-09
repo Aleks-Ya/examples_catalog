@@ -18,8 +18,8 @@ import java.util.List;
  * Составляет список папок проектов.
  */
 @Component
-public class ProjectFolderList {
-    private static final Logger LOG = LoggerFactory.getLogger(ProjectFolderList.class);
+public class PrFolderList {
+    private static final Logger LOG = LoggerFactory.getLogger(PrFolderList.class);
     @Autowired
     @Qualifier("dff")
     private FileFilter dirFileFilter;
@@ -31,10 +31,10 @@ public class ProjectFolderList {
     @Value("#{settings.examplesRoot}")
     private String rootCatalogDir;
 
-    public ProjectFolderList() {
+    public PrFolderList() {
     }
 
-    public ProjectFolderList(String rootCatalogDir, FileFilter dirFileFilter, FilenameFilter projectFileFilter) {
+    public PrFolderList(String rootCatalogDir, FileFilter dirFileFilter, FilenameFilter projectFileFilter) {
         this.rootCatalogDir = rootCatalogDir;
         this.dirFileFilter = dirFileFilter;
         this.projectFileFilter = projectFileFilter;

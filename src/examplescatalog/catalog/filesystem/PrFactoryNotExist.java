@@ -10,12 +10,12 @@ import java.io.IOException;
 /**
  * Шаблон проекта со стандартными настройками.
  */
-public class DefaultProjectFactory {
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultProjectFactory.class);
+public class PrFactoryNotExist {
+    private static final Logger LOG = LoggerFactory.getLogger(PrFactoryNotExist.class);
     private String defaultCommand;
     private PrSaver prSaver;
 
-    public DefaultProjectFactory(String defaultCommand, PrSaver prSaver) {
+    public PrFactoryNotExist(String defaultCommand, PrSaver prSaver) {
         this.defaultCommand = defaultCommand;
         this.prSaver = prSaver;
     }

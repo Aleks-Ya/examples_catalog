@@ -18,7 +18,7 @@ public class MemoryCatalog implements ICatalog {
     }
 
     @Override
-    public Project getProjectById(String projectId) {
+    public Project getPrById(String projectId) {
         return projects.get(projectId);
     }
 

@@ -9,21 +9,21 @@ import java.util.List;
  * 1. С идентификационным файлом проекта;
  * 2. Без идентификационного файла проекта.
  */
-public class ProjectIdList {
+public class PrIdList {
     private List<File> projectWithIdFile = new ArrayList<>();
     private List<File> projectWithoutIdFile = new ArrayList<>();
-    private ProjectFolderList projectFolderList;
-    private ProjectIdFileFilter projectIdFileFilter;
+    private PrFolderList prFolderList;
+    private PrIdFileFilter prIdFileFilter;
 
-    public ProjectIdList(ProjectFolderList projectFolderList, ProjectIdFileFilter projectIdFileFilter) {
-        this.projectFolderList = projectFolderList;
-        this.projectIdFileFilter = projectIdFileFilter;
+    public PrIdList(PrFolderList prFolderList, PrIdFileFilter prIdFileFilter) {
+        this.prFolderList = prFolderList;
+        this.prIdFileFilter = prIdFileFilter;
         init();
     }
 
     private void init() {
-        for (File projectFolder : projectFolderList.getProjectFolders()) {
-            if (projectFolder.listFiles(projectIdFileFilter).length > 0) {
+        for (File projectFolder : prFolderList.getProjectFolders()) {
+            if (projectFolder.listFiles(prIdFileFilter).length > 0) {
                 projectWithIdFile.add(projectFolder);
             } else {
                 projectWithoutIdFile.add(projectFolder);
@@ -31,11 +31,11 @@ public class ProjectIdList {
         }
     }
 
-    public List<File> getProjectWithIdFile() {
+    public List<File> getPrWithIdFile() {
         return projectWithIdFile;
     }
 
-    public List<File> getProjectWithoutIdFile() {
+    public List<File> getPrWithoutIdFile() {
         return projectWithoutIdFile;
     }
 }
