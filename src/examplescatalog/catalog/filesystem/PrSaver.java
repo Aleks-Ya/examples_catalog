@@ -1,6 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Project;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ class PrSaver {
     private static final String DEFAULT_COMMAND = "default_command";
     private String prIdFilename;
 
+    @Autowired
     public PrSaver(
             @Value("#{settings.projectIdFilename}") String prIdFilename) {
         this.prIdFilename = prIdFilename;

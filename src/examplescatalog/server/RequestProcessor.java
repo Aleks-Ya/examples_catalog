@@ -1,7 +1,7 @@
 package examplescatalog.server;
 
-import examplescatalog.catalog.Project;
 import examplescatalog.catalog.Catalog;
+import examplescatalog.catalog.Project;
 import examplescatalog.command.ICommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,13 +35,16 @@ class RequestProcessor implements Runnable {
             reader.close();
 
             String[] strings = head.split(" ");
-            String projectId = strings[1].substring(1);
-            LOG.info("Received project id: {}", projectId);
-            Project project = catalog.getPrById(projectId);
+            String prId = strings[1].substring(1);
+            LOG.info("Received project id: {}", prId);
+            Project project = catalog.getPrById(prId);
+            if (project == null) {
+                throw new ServerException(String.format("Project not found by id: %s", prId));
+            }
 
             ICommand command = commandMap.get("explorerCommand");
             command.execute(project);
-        } catch (IOException e) {
+        } catch (IOException | ServerException e) {
             LOG.error(e.getMessage(), e);
         }
     }

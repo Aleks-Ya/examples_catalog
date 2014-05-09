@@ -1,5 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -18,6 +19,7 @@ class PrIdList {
     private PrFolderList prFolderList;
     private PrIdFileFilter prIdFileFilter;
 
+    @Autowired
     public PrIdList(PrFolderList prFolderList, PrIdFileFilter prIdFileFilter) {
         this.prFolderList = prFolderList;
         this.prIdFileFilter = prIdFileFilter;

@@ -4,6 +4,7 @@ import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ class PrFactoryNotExist {
     private Catalog catalog;
     private PrIdGenerator prIdGenerator;
 
+    @Autowired
     public PrFactoryNotExist(
             @Value("#{settings.defaultCommand}") String defaultCommand,
             PrSaver prSaver, Catalog catalog, PrIdGenerator prIdGenerator) {

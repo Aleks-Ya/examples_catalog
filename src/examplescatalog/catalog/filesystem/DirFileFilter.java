@@ -8,7 +8,7 @@ import java.io.FileFilter;
 /**
  * Файловый фильтр, пропускающий только директории.
  */
-@Component("dff")
+@Component
 class DirFileFilter implements FileFilter {
     @Override
     public boolean accept(File pathname) {

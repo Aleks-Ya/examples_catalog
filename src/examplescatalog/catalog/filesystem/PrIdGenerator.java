@@ -1,6 +1,8 @@
 package examplescatalog.catalog.filesystem;
 
+import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,8 +17,9 @@ class PrIdGenerator {
     private final List<Integer> projectIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();
 
-    PrIdGenerator(List<Project> prWithId) {
-        for (Project pr : prWithId) {
+    @Autowired
+    PrIdGenerator(Catalog catalog) {
+        for (Project pr : catalog.getAllProjects()) {
             projectIdList.add(Integer.valueOf(pr.getId()));
         }
     }

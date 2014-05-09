@@ -1,6 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Catalog;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -13,13 +14,15 @@ import java.io.IOException;
  */
 @Component
 class PrFactoryExist {
-    private Catalog catalog = new Catalog();
+    private Catalog catalog;
     private PrIdList prFolderList;
     private PrSaver prSaver;
 
-    public PrFactoryExist(PrIdList prIdList, PrSaver prSaver) throws IOException {
+    @Autowired
+    public PrFactoryExist(PrIdList prIdList, PrSaver prSaver, Catalog catalog) throws IOException {
         this.prFolderList = prIdList;
         this.prSaver = prSaver;
+        this.catalog = catalog;
         init();
     }
 
@@ -27,9 +30,5 @@ class PrFactoryExist {
         for (File prDir : prFolderList.getPrWithIdFile()) {
             catalog.addProject(prSaver.load(prDir));
         }
-    }
-
-    public Catalog getCatalog() {
-        return catalog;
     }
 }

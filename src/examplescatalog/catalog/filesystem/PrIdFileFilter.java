@@ -1,5 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -12,7 +14,8 @@ import java.io.FilenameFilter;
 class PrIdFileFilter implements FilenameFilter {
     private String projectIdFilename;
 
-    public PrIdFileFilter(String projectIdFilename) {
+    @Autowired
+    public PrIdFileFilter(@Value("#{settings.projectIdFilename}") String projectIdFilename) {
         this.projectIdFilename = projectIdFilename;
     }
 
