@@ -16,6 +16,7 @@ import java.util.List;
 public class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
+    private String defaultCommand;
     private List<PrFileMask> masks;
     private String intellijIdeaPath;
     private String examplesRoot;
@@ -31,6 +32,7 @@ public class EnvironmentSettings implements ISettings {
     private void init() {
         port = xmlSettings.getPort();
         projectIdFilename = xmlSettings.getProjectIdFilename();
+        defaultCommand = xmlSettings.getDefaultCommand();
         masks = xmlSettings.getProjectFileMasks();
 
         String exampleRootEnv = System.getenv(examplesRootEnvironment);
@@ -63,5 +65,10 @@ public class EnvironmentSettings implements ISettings {
     @Override
     public String getIntellijIdeaPath() {
         return intellijIdeaPath;
+    }
+
+    @Override
+    public String getDefaultCommand() {
+        return defaultCommand;
     }
 }

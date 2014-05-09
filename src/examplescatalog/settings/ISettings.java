@@ -15,4 +15,6 @@ public interface ISettings {
     String getExamplesRoot();
 
     String getIntellijIdeaPath();
+
+    String getDefaultCommand();
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- todo Подправить XSD-->
-<settings port="2512" projectIdFilename="ExamplesCatalog.properties">
+<settings port="2512" projectIdFilename="ExamplesCatalog.properties" defaultCommand="explorerCommand">
     <projectFileMasks>
         <mask mask=".*.iml" priority="3"/>
         <mask mask=".*.gradle" priority="2"/>

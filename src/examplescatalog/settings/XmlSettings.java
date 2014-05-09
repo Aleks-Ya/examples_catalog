@@ -30,10 +30,11 @@ public class XmlSettings implements ISettings {
     private int port;
     @XmlAttribute
     private String projectIdFilename;
+    @XmlAttribute
+    private String defaultCommand;
     @XmlElementWrapper(name = "projectFileMasks")
     @XmlElement(name = "mask")
     private List<PrFileMask> masks;
-
 
     public static XmlSettings getInstance(String xmlSettingsFile, String xsdFile) throws SettingsException {
         File xml = new File(xmlSettingsFile);
@@ -84,5 +85,10 @@ public class XmlSettings implements ISettings {
     @Override
     public String getIntellijIdeaPath() {
         return null;// будет добавлено в EnvironmentSettings
+    }
+
+    @Override
+    public String getDefaultCommand() {
+        return defaultCommand;
     }
 }
