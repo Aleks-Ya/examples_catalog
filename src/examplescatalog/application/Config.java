@@ -1,36 +1,23 @@
 package examplescatalog.application;
 
-import examplescatalog.settings.EnvironmentSettings;
 import examplescatalog.settings.ISettings;
 import examplescatalog.settings.SettingsException;
 import examplescatalog.settings.XmlSettings;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 
 import java.awt.Desktop;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Загружает старый конфигурационный файл xml-файл Spring.
+ * Конфигурация бинов, которые не удалось получить напрямую через аннотации.
  */
 @Configuration
-@ImportResource("classpath:examplescatalog/application/spring.xml")
 public class Config {
 
-    @Autowired
-    ApplicationContext context;
-
-    @Bean(name = "settings")
-    public ISettings getEnvironmentSettings() throws SettingsException {
-        return context.getBean(EnvironmentSettings.class);
-    }
-
-    @Bean(name = "xmlSettings")
-    public ISettings getXmlSettings() throws SettingsException {
+    @Bean
+    public ISettings getSettings() throws SettingsException {
         String xmlFile = XmlSettings.class.getResource("settings.xml").getFile();
         String xsdFile = XmlSettings.class.getResource("settings.xsd").getFile();
         return XmlSettings.getInstance(xmlFile, xsdFile);
