@@ -34,10 +34,13 @@ class PrFolderList {
     @PostConstruct
     public void process() {
         LOG.info("Scan root folder: {}", rootCatalogDir);
-        processDir(new File(rootCatalogDir));
+        Integer scannedDirCounter = 0;
+        processDir(new File(rootCatalogDir), scannedDirCounter);
+        LOG.info("Scanned folders: {}", scannedDirCounter);
     }
 
-    private void processDir(File dir) {
+    private void processDir(File dir, int counter) {
+        counter++;
         File[] projectFiles = dir.listFiles(projectFileFilter);
         if (projectFiles.length > 0) {
             projectFolders.add(dir);
@@ -45,7 +48,7 @@ class PrFolderList {
 
         File[] subDirs = dir.listFiles(dirFileFilter);
         for (File subDir : subDirs) {
-            processDir(subDir);
+            processDir(subDir, counter);
         }
     }
 

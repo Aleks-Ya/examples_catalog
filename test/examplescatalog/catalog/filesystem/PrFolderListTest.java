@@ -47,8 +47,9 @@ public class PrFolderListTest {
 
         PrIdGenerator prIdGenerator = new PrIdGenerator(catalog);
 
-        PrFactoryNotExist prFactoryNotExist = new PrFactoryNotExist("explorerCommand", prSaver, catalog, prIdGenerator);
-        prFactoryNotExist.createProjects(prWithoutId);
+        PrFactoryNotExist prFactoryNotExist =
+                new PrFactoryNotExist("explorerCommand", prSaver, catalog, prIdGenerator, prIdList);
+        prFactoryNotExist.createProjects();
 
         assertEquals(catalog.getAllProjects().size(), 3);
     }

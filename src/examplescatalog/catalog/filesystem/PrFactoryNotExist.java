@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -22,19 +23,22 @@ class PrFactoryNotExist {
     private PrSaver prSaver;
     private Catalog catalog;
     private PrIdGenerator prIdGenerator;
+    private PrIdList prIdList;
 
     @Autowired
     public PrFactoryNotExist(
             @Value("#{settings.defaultCommand}") String defaultCommand,
-            PrSaver prSaver, Catalog catalog, PrIdGenerator prIdGenerator) {
+            PrSaver prSaver, Catalog catalog, PrIdGenerator prIdGenerator, PrIdList prIdList) {
         this.defaultCommand = defaultCommand;
         this.prSaver = prSaver;
         this.catalog = catalog;
         this.prIdGenerator = prIdGenerator;
+        this.prIdList = prIdList;
     }
 
-    public void createProjects(List<File> projects) throws IOException {
-        for (File prDir : projects) {
+    @PostConstruct
+    public void createProjects() throws IOException {
+        for (File prDir : prIdList.getPrWithoutIdFile()) {
             String id = prIdGenerator.generateId();
             createProject(prDir, id);
         }
