@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- todo Перенести конфигурацию зависимостей в аннотации -->
 
@@ -32,39 +32,5 @@
             </bean>
         </constructor-arg>
     </bean>
-
-    <bean id="server" class="examplescatalog.server.Server" init-method="start" depends-on="catalog commandMap">
-        <constructor-arg value="#{settings.port}"/>
-        <constructor-arg>
-            <bean class="java.util.concurrent.Executors" factory-method="newFixedThreadPool">
-                <constructor-arg value="10"/>
-            </bean>
-        </constructor-arg>
-        <constructor-arg ref="catalog"/>
-        <constructor-arg ref="commandMap"/>
-    </bean>
-
-    <bean id="explorerCommand" class="examplescatalog.command.ExplorerCommand">
-        <constructor-arg value=""/>
-    </bean>
-
-    <util:map id="commandMap">
-        <entry key="explorerCommand">
-            <bean class="examplescatalog.command.ExplorerCommand">
-                <constructor-arg>
-                    <bean class="java.awt.Desktop" factory-method="getDesktop"/>
-                </constructor-arg>
-            </bean>
-        </entry>
-        <entry key="ideaCommand">
-            <bean class="examplescatalog.command.IdeaCommand"/>
-        </entry>
-        <entry key="menuCommand">
-            <bean class="examplescatalog.command.MenuCommand"/>
-        </entry>
-        <entry key="exitCommand">
-            <bean class="examplescatalog.command.ExitCommand"/>
-        </entry>
-    </util:map>
 
 </beans>

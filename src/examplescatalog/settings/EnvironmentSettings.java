@@ -4,7 +4,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 /**
  * Читает настройки из переменных окружения.
  */
-@Component("settings")
+@Component
 public class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;

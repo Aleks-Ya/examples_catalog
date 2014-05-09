@@ -3,6 +3,8 @@ package examplescatalog.command;
 import examplescatalog.catalog.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -11,13 +13,11 @@ import java.io.IOException;
 /**
  * Команда "Открыть проект в проводнике".
  */
+@Component
 public class ExplorerCommand implements ICommand {
     private static final Logger LOG = LoggerFactory.getLogger(ExplorerCommand.class);
+    @Autowired
     private Desktop desktop;
-
-    public ExplorerCommand(Desktop desktop) {
-        this.desktop = desktop;
-    }
 
     @Override
     public void execute(Project project) {
