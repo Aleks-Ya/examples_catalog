@@ -1,6 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
-import examplescatalog.catalog.ICatalog;
+import examplescatalog.catalog.Catalog;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 @Component
 class PrFactoryExist {
-    private ICatalog catalog = new FileSystemCatalog();
+    private Catalog catalog = new Catalog();
     private PrIdList prFolderList;
     private PrSaver prSaver;
 
@@ -29,7 +29,7 @@ class PrFactoryExist {
         }
     }
 
-    public ICatalog getCatalog() {
+    public Catalog getCatalog() {
         return catalog;
     }
 }

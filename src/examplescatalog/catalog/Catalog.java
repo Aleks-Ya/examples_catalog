@@ -1,34 +1,29 @@
 package examplescatalog.catalog;
 
+import examplescatalog.catalog.Project;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Каталог примеров, хранимый в памяти.
+ * Каталог примеров.
  */
-public class MemoryCatalog implements ICatalog {
+@Component
+public class Catalog {
     private Map<String, Project> projects = new HashMap<>();
 
-    public MemoryCatalog(ICatalog baseCatalog) {
-        for (Project project : baseCatalog.getAllProjects()) {
-            projects.put(project.getId(), project);
-        }
-    }
-
-    @Override
     public Project getPrById(String projectId) {
         return projects.get(projectId);
     }
 
-    @Override
     public List<Project> getAllProjects() {
         return new ArrayList<>(projects.values());
     }
 
-    @Override
     public void addProject(Project project) {
-        throw new UnsupportedOperationException();
+        projects.put(project.getId(), project);
     }
 }

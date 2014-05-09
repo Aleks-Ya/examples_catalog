@@ -1,7 +1,7 @@
 package examplescatalog.server;
 
-import examplescatalog.catalog.ICatalog;
 import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Catalog;
 import examplescatalog.command.ICommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +19,9 @@ class RequestProcessor implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(RequestProcessor.class);
     private Socket socket;
     private Map<String, ICommand> commandMap;
-    private ICatalog catalog;
+    private Catalog catalog;
 
-    RequestProcessor(Socket socket, Map<String, ICommand> commandMap, ICatalog catalog) {
+    RequestProcessor(Socket socket, Map<String, ICommand> commandMap, Catalog catalog) {
         this.socket = socket;
         this.commandMap = commandMap;
         this.catalog = catalog;

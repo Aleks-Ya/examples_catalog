@@ -1,6 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
-import examplescatalog.catalog.ICatalog;
+import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +19,12 @@ class PrFactoryNotExist {
     private static final Logger LOG = LoggerFactory.getLogger(PrFactoryNotExist.class);
     private String defaultCommand;
     private PrSaver prSaver;
-    private ICatalog catalog;
+    private Catalog catalog;
     private PrIdGenerator prIdGenerator;
 
     public PrFactoryNotExist(
             @Value("#{settings.defaultCommand}") String defaultCommand,
-            PrSaver prSaver, ICatalog catalog, PrIdGenerator prIdGenerator) {
+            PrSaver prSaver, Catalog catalog, PrIdGenerator prIdGenerator) {
         this.defaultCommand = defaultCommand;
         this.prSaver = prSaver;
         this.catalog = catalog;

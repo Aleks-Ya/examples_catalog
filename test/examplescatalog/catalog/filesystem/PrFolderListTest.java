@@ -1,6 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
-import examplescatalog.catalog.ICatalog;
+import examplescatalog.catalog.Catalog;
 import examplescatalog.settings.PrFileMask;
 import org.testng.annotations.Test;
 
@@ -41,7 +41,7 @@ public class PrFolderListTest {
         PrSaver prSaver = new PrSaver(prIdFilename);
 
         PrFactoryExist prFactoryExist = new PrFactoryExist(prIdList, prSaver);
-        ICatalog catalog = prFactoryExist.getCatalog();
+        Catalog catalog = prFactoryExist.getCatalog();
 
         assertEquals(catalog.getAllProjects().size(), 1);
 

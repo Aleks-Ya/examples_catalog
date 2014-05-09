@@ -1,6 +1,6 @@
 package examplescatalog.server;
 
-import examplescatalog.catalog.ICatalog;
+import examplescatalog.catalog.Catalog;
 import examplescatalog.command.ICommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class Server {
     @Autowired
     private Executor executor;
     @Autowired
-    private ICatalog catalog;
+    private Catalog catalog;
     @Autowired
     private Map<String, ICommand> commandMap;
 
