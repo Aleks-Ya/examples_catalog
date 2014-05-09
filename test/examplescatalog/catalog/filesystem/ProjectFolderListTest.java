@@ -1,11 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
-import examplescatalog.settings.EnvironmentSettings;
-import examplescatalog.settings.ISettings;
 import examplescatalog.settings.ProjectFileMask;
-import examplescatalog.settings.SettingsException;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -20,7 +15,7 @@ import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 
 public class ProjectFolderListTest {
-
+    //удалить временную папку после теста
     @Test
     public void testGetProjectFolders() throws Exception {
         File tempRootDir = initCatalogDir();
@@ -31,6 +26,14 @@ public class ProjectFolderListTest {
         folderList.process();
 
         assertEquals(folderList.getProjectFolders().size(), 3);
+
+        ProjectIdFileFilter projectIdFileFilter = new ProjectIdFileFilter("ExamplesCatalog.properties");
+
+        ProjectIdList projectIdList = new ProjectIdList(folderList, projectIdFileFilter);
+        List<File> projectWithId = projectIdList.getProjectWithIdFile();
+        List<File> projectWithoutId = projectIdList.getProjectWithoutIdFile();
+        assertEquals(projectWithId.size(), 1);
+        assertEquals(projectWithoutId.size(), 2);
     }
 
     private File initCatalogDir() throws IOException {
@@ -43,6 +46,7 @@ public class ProjectFolderListTest {
 
         File subDir2 = new File(tempRootDir, "subDir2");
         createFile(subDir2, "fuck.iml");
+        createFile(subDir2, "ExamplesCatalog.properties");
 
         File subDir2_1 = new File(subDir2, "sub_project");
         createFile(subDir2_1, "good.iml");
@@ -57,20 +61,11 @@ public class ProjectFolderListTest {
         when(idea.getMask()).thenReturn(".*.iml");
 
         List<ProjectFileMask> masks = Arrays.asList(gradle, idea);
-        ProjectFileFilter projectFileFilter = new ProjectFileFilter(masks);
-        return projectFileFilter;
+        return new ProjectFileFilter(masks);
     }
 
     private void createFile(File dir, String name) throws IOException {
         dir.mkdirs();
         new FileWriter(new File(dir, name)).close();
-    }
-
-    @Configuration
-    static class Config {
-        @Bean(name = "settings")
-        public ISettings getEnvironmentSettings() throws SettingsException {
-            return new EnvironmentSettings();
-        }
     }
 }
