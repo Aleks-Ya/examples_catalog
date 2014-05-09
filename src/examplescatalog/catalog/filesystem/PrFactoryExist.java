@@ -17,6 +17,7 @@ public class PrFactoryExist {
 
     public PrFactoryExist(PrIdList prIdList, PrSaver prSaver) throws IOException {
         this.prFolderList = prIdList;
+        this.prSaver = prSaver;
         init();
     }
 

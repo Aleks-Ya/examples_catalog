@@ -13,7 +13,7 @@ class PrIdGenerator {
     private final List<Integer> projectIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();
 
-    public void setPrWithId(List<Project> prWithId) {
+    PrIdGenerator(List<Project> prWithId) {
         for (Project pr : prWithId) {
             projectIdList.add(Integer.valueOf(pr.getId()));
         }
