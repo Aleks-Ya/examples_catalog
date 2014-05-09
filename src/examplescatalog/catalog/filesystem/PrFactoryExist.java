@@ -1,6 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.ICatalog;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.IOException;
  * 1. Папки с идентификационным файлом проекта
  * 2. Без идентификационного файла
  */
+@Component
 class PrFactoryExist {
     private ICatalog catalog = new FileSystemCatalog();
     private PrIdList prFolderList;

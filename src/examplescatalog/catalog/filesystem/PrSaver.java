@@ -1,6 +1,8 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Project;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileReader;
@@ -11,13 +13,15 @@ import java.util.Properties;
 /**
  * Читает и записывает идентификационный файл проекта.
  */
+@Component
 class PrSaver {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String DEFAULT_COMMAND = "default_command";
     private String prIdFilename;
 
-    public PrSaver(String prIdFilename) {
+    public PrSaver(
+            @Value("#{settings.projectIdFilename}") String prIdFilename) {
         this.prIdFilename = prIdFilename;
     }
 

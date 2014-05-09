@@ -1,6 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Project;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Random;
 /**
  * Генератор индетификаторов для проектов.
  */
+@Component
 class PrIdGenerator {
     private final List<Integer> projectIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();

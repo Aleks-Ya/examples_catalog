@@ -2,6 +2,7 @@ package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.ICatalog;
 import examplescatalog.catalog.Project;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 /**
  * Читает каталог проектов из файловой системы.
  */
+@Component
 public class FileSystemCatalog implements ICatalog {
     private Map<String, Project> projects = new HashMap<>();
 

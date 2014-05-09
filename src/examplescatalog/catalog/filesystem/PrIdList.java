@@ -1,5 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
  * 1. С идентификационным файлом проекта;
  * 2. Без идентификационного файла проекта.
  */
+@Component
 class PrIdList {
     private List<File> projectWithIdFile = new ArrayList<>();
     private List<File> projectWithoutIdFile = new ArrayList<>();
