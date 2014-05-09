@@ -58,7 +58,7 @@ class Folder {
     }
 
     public Project getProject() {
-        return new Project(dir, getProjectIdFile().getId());
+        return new Project(dir);
     }
 
 //    public List<File> getProjectFiles() {

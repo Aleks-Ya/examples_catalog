@@ -25,4 +25,9 @@ public class DirCatalog implements ICatalog {
     public List<Project> getAllProjects() {
         return projectList.getProjectList();
     }
+
+    @Override
+    public void addProject(Project project) {
+
+    }
 }

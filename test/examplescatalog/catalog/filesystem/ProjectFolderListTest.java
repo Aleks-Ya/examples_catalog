@@ -1,5 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
+import examplescatalog.catalog.ICatalog;
 import examplescatalog.settings.ProjectFileMask;
 import org.testng.annotations.Test;
 
@@ -27,13 +28,29 @@ public class ProjectFolderListTest {
 
         assertEquals(folderList.getProjectFolders().size(), 3);
 
-        ProjectIdFileFilter projectIdFileFilter = new ProjectIdFileFilter("ExamplesCatalog.properties");
+        final String projectIdFilename = "ExamplesCatalog.properties";
+        ProjectIdFileFilter projectIdFileFilter = new ProjectIdFileFilter(projectIdFilename);
 
         ProjectIdList projectIdList = new ProjectIdList(folderList, projectIdFileFilter);
         List<File> projectWithId = projectIdList.getProjectWithIdFile();
         List<File> projectWithoutId = projectIdList.getProjectWithoutIdFile();
         assertEquals(projectWithId.size(), 1);
         assertEquals(projectWithoutId.size(), 2);
+
+        PrSaver prSaver = new PrSaver(projectIdFilename);
+
+        ExistProjectFactory existProjectFactory = new ExistProjectFactory(projectIdList, prSaver);
+        ICatalog catalog = existProjectFactory.getCatalog();
+
+        ProjectIdGenerator projectIdGenerator = new ProjectIdGenerator();
+        projectIdGenerator.setProjectsWithId(catalog.getAllProjects());
+
+
+        DefaultProjectFactory defaultProjectFactory = new DefaultProjectFactory("explorerCommand", prSaver);
+        for (File prDir : projectWithoutId) {
+            String id = projectIdGenerator.generateId();
+            defaultProjectFactory.getInstance(prDir, id);
+        }
     }
 
     private File initCatalogDir() throws IOException {

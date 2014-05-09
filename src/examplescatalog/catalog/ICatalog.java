@@ -9,4 +9,6 @@ public interface ICatalog {
     Project getProjectById(String projectId);
 
     List<Project> getAllProjects();
+
+    void addProject(Project project);
 }
