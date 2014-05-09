@@ -1,25 +1,34 @@
 package examplescatalog.settings;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
  * Читает настройки из переменных окружения.
  */
+@Component("settings")
 public class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
     private List<ProjectFileMask> masks;
     private String intellijIdeaPath;
     private String examplesRoot;
+    @Autowired
+    @Qualifier("xmlSettings")
+    private ISettings xmlSettings;
+    @Value("EXAMPLES_ROOT")
+    private String examplesRootEnvironment;
+    @Value("INTELLIJ_IDEA_PATH")
+    private String intellijIdeaPathEnvironment;
 
-    /**
-     * @param xmlSettings                 Настройки, загруженные из xml (будем их переопределять).
-     * @param examplesRootEnvironment     Имя переменной окружения с путем к папке каталога примеров.
-     * @param intellijIdeaPathEnvironment Имя переменной окружения с путем к исполняемому файлу IntellijIdea.
-     */
-    public EnvironmentSettings(ISettings xmlSettings, String examplesRootEnvironment, String intellijIdeaPathEnvironment) {
+    @PostConstruct
+    private void init() {
         port = xmlSettings.getPort();
         projectIdFilename = xmlSettings.getProjectIdFilename();
         masks = xmlSettings.getProjectFileMasks();

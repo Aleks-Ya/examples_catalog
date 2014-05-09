@@ -2,6 +2,7 @@ package examplescatalog.catalog.filesystem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Составляет список папок проектов.
  */
+@Component
 public class ProjectFolderList {
     @Autowired
     @Qualifier("dff")

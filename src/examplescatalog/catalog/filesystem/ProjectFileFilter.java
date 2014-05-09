@@ -16,6 +16,9 @@ import java.util.regex.Pattern;
 class ProjectFileFilter implements FilenameFilter {
     private List<Pattern> masks = new ArrayList<>();
 
+    ProjectFileFilter() {
+    }
+
     public ProjectFileFilter(List<ProjectFileMask> masks) {
         for (ProjectFileMask mask : masks) {
             this.masks.add(Pattern.compile(mask.getMask()));

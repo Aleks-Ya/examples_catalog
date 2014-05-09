@@ -5,17 +5,6 @@
 
     <!-- todo Перенести конфигурацию зависимостей в аннотации -->
 
-    <bean id="settings" class="examplescatalog.settings.EnvironmentSettings">
-        <constructor-arg index="0">
-            <bean class="examplescatalog.settings.XmlSettings" factory-method="getInstance">
-                <constructor-arg index="0" value="settings.xml"/>
-                <constructor-arg index="1" value="settings.xsd"/>
-            </bean>
-        </constructor-arg>
-        <constructor-arg index="1" value="EXAMPLES_ROOT"/>
-        <constructor-arg index="2" value="INTELLIJ_IDEA_PATH"/>
-    </bean>
-
     <bean id="catalog" class="examplescatalog.catalog.MemoryCatalog">
         <constructor-arg>
             <bean class="examplescatalog.catalog.dircatalog.DirCatalog">

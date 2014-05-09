@@ -6,6 +6,10 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/examplescatalog/application/spring.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
+          <file>file://$MODULE_DIR$/src/examplescatalog/application/spring.xml</file>
+          <file>file://$MODULE_DIR$/src/examplescatalog/application/Config.java</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
@@ -23,16 +27,22 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Gradle: slf4j-api-1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: slf4j-log4j12-1.7.7" level="project" />
     <orderEntry type="library" exported="" name="Gradle: log4j-1.2.17" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-context-3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-lang3-3.3.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-collections4-4.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-logging-1.1.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-core-3.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-beans-3.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: aopalliance-1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-aop-3.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: spring-expression-3.2.4.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-collections4-4.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-lang3-3.3.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: testng-6.8.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: bsh-2.0b4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: jcommander-1.27" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: mockito-all-1.9.5" level="project" />
   </component>
 </module>
 
