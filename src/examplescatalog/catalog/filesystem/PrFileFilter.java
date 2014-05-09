@@ -26,6 +26,7 @@ class PrFileFilter implements FilenameFilter {
         init();
     }
 
+    //todo использовать postconstruct
     private void init() {
         for (PrFileMask mask : prFileMasks) {
             this.masks.add(Pattern.compile(mask.getMask()));

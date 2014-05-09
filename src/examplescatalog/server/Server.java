@@ -38,6 +38,7 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
                 executor.execute(new RequestProcessor(socket, commandMap, catalog));
+                // todo инстанцировать через контекст
             }
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);

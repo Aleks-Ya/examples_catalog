@@ -1,6 +1,8 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,7 @@ import java.util.Properties;
  */
 @Component
 class PrSaver {
+    private static final Logger LOG = LoggerFactory.getLogger(PrSaver.class);
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String DEFAULT_COMMAND = "default_command";
@@ -28,6 +31,7 @@ class PrSaver {
     }
 
     public void save(Project pr) throws IOException {
+        LOG.debug("Save project: {}", pr);
         Properties props = new Properties();
         props.setProperty(ID, pr.getId());
         props.setProperty(NAME, pr.getName());
@@ -38,6 +42,8 @@ class PrSaver {
     public Project load(File prDir) throws IOException {
         Properties props = new Properties();
         props.load(new FileReader(new File(prDir, prIdFilename)));
-        return new Project(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEFAULT_COMMAND));
+        Project pr = new Project(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEFAULT_COMMAND));
+        LOG.debug("Project loaded: {}", pr);
+        return pr;
     }
 }

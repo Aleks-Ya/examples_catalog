@@ -33,7 +33,7 @@ class PrFolderList {
 
     @PostConstruct
     public void process() {
-        LOG.info("Сканирую коневую папку проекта: {}", rootCatalogDir);
+        LOG.info("Scan root folder: {}", rootCatalogDir);
         processDir(new File(rootCatalogDir));
     }
 

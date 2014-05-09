@@ -1,5 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import java.util.List;
  */
 @Component
 class PrIdList {
+    private static final Logger LOG = LoggerFactory.getLogger(PrIdList.class);
     private List<File> projectWithIdFile = new ArrayList<>();
     private List<File> projectWithoutIdFile = new ArrayList<>();
     private PrFolderList prFolderList;
@@ -34,6 +37,8 @@ class PrIdList {
                 projectWithoutIdFile.add(projectFolder);
             }
         }
+        LOG.info("Found project folders WITH id file: {}", projectWithIdFile.size());
+        LOG.info("Found project folders WITHOUT id file: {}", projectWithoutIdFile.size());
     }
 
     public List<File> getPrWithIdFile() {

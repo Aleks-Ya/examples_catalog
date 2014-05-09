@@ -2,6 +2,8 @@ package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import java.util.Random;
  */
 @Component
 class PrIdGenerator {
+    private static final Logger LOG = LoggerFactory.getLogger(PrIdGenerator.class);
     private final List<Integer> projectIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();
 
@@ -30,6 +33,7 @@ class PrIdGenerator {
             next = Math.abs(RANDOM.nextInt());
         } while (projectIdList.contains(next));
         projectIdList.add(next);
+        LOG.debug("Generated project id: {}", next);
         return next.toString();
     }
 }

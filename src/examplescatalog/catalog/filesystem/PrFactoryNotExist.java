@@ -42,7 +42,7 @@ class PrFactoryNotExist {
 
     public void createProject(File folder, String prId) throws IOException {
         Project pr = new Project(prId, folder.getName(), folder, defaultCommand);
-        LOG.info("Создал проект {}", pr);
+        LOG.info("Project created: {}", pr);
         prSaver.save(pr);
         catalog.addProject(pr);
     }

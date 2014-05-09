@@ -1,26 +1,15 @@
 package examplescatalog.catalog;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
-import java.util.Properties;
 
 /**
  * Пример из каталога примеров.
  */
 public class Project {
-    private static final Logger LOG = LoggerFactory.getLogger(Project.class);
     private String id;
     private String name;
     private File folder;
     private String command;
-
-    public Project(File folder) {
-        this.folder = folder;
-        name = folder.getName();
-        LOG.debug("Created: {}", this);
-    }
 
     public Project(String id, String name, File folder, String command) {
         this.id = id;
