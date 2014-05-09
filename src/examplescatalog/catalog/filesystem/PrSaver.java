@@ -11,7 +11,7 @@ import java.util.Properties;
 /**
  * Читает и записывает идентификационный файл проекта.
  */
-public class PrSaver {
+class PrSaver {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String DEFAULT_COMMAND = "default_command";

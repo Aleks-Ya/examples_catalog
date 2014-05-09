@@ -18,7 +18,7 @@ import java.util.List;
  * Составляет список папок проектов.
  */
 @Component
-public class PrFolderList {
+class PrFolderList {
     private static final Logger LOG = LoggerFactory.getLogger(PrFolderList.class);
     @Autowired
     @Qualifier("dff")

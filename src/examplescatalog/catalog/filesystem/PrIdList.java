@@ -9,7 +9,7 @@ import java.util.List;
  * 1. С идентификационным файлом проекта;
  * 2. Без идентификационного файла проекта.
  */
-public class PrIdList {
+class PrIdList {
     private List<File> projectWithIdFile = new ArrayList<>();
     private List<File> projectWithoutIdFile = new ArrayList<>();
     private PrFolderList prFolderList;

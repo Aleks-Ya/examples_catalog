@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Шаблон проекта со стандартными настройками.
  */
-public class PrFactoryNotExist {
+class PrFactoryNotExist {
     private static final Logger LOG = LoggerFactory.getLogger(PrFactoryNotExist.class);
     private String defaultCommand;
     private PrSaver prSaver;

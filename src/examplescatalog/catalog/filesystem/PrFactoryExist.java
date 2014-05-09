@@ -10,7 +10,7 @@ import java.io.IOException;
  * 1. Папки с идентификационным файлом проекта
  * 2. Без идентификационного файла
  */
-public class PrFactoryExist {
+class PrFactoryExist {
     private ICatalog catalog = new FileSystemCatalog();
     private PrIdList prFolderList;
     private PrSaver prSaver;
