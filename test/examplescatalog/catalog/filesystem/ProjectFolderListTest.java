@@ -1,7 +1,11 @@
 package examplescatalog.catalog.filesystem;
 
+import examplescatalog.settings.EnvironmentSettings;
+import examplescatalog.settings.ISettings;
 import examplescatalog.settings.ProjectFileMask;
-import org.springframework.context.support.StaticApplicationContext;
+import examplescatalog.settings.SettingsException;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -13,20 +17,20 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.testng.Assert.assertEquals;
 
 public class ProjectFolderListTest {
 
     @Test
     public void testGetProjectFolders() throws Exception {
+        File tempRootDir = initCatalogDir();
+        DirFileFilter dirFileFilter = new DirFileFilter();
         ProjectFileFilter projectFileFilter = initMasks();
 
-        File tempRootDir = initCatalogDir();
-        StaticApplicationContext context = new StaticApplicationContext();
+        ProjectFolderList folderList = new ProjectFolderList(tempRootDir.getAbsolutePath(), dirFileFilter, projectFileFilter);
+        folderList.process();
 
-        ProjectFolderList folderList = context.getBeanFactory().createBean(ProjectFolderList.class);
-
-
-        tempRootDir.toString();
+        assertEquals(folderList.getProjectFolders().size(), 3);
     }
 
     private File initCatalogDir() throws IOException {
@@ -53,11 +57,20 @@ public class ProjectFolderListTest {
         when(idea.getMask()).thenReturn(".*.iml");
 
         List<ProjectFileMask> masks = Arrays.asList(gradle, idea);
-        return new ProjectFileFilter(masks);
+        ProjectFileFilter projectFileFilter = new ProjectFileFilter(masks);
+        return projectFileFilter;
     }
 
     private void createFile(File dir, String name) throws IOException {
         dir.mkdirs();
         new FileWriter(new File(dir, name)).close();
+    }
+
+    @Configuration
+    static class Config {
+        @Bean(name = "settings")
+        public ISettings getEnvironmentSettings() throws SettingsException {
+            return new EnvironmentSettings();
+        }
     }
 }

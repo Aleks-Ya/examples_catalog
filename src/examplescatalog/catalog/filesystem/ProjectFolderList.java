@@ -1,9 +1,13 @@
 package examplescatalog.catalog.filesystem;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -15,6 +19,7 @@ import java.util.List;
  */
 @Component
 public class ProjectFolderList {
+    private static final Logger LOG = LoggerFactory.getLogger(ProjectFolderList.class);
     @Autowired
     @Qualifier("dff")
     private FileFilter dirFileFilter;
@@ -23,19 +28,21 @@ public class ProjectFolderList {
     private FilenameFilter projectFileFilter;
 
     private List<File> projectFolders = new ArrayList<>();
-    private File rootCatalogDir;
+    @Value("#{settings.examplesRoot}")
+    private String rootCatalogDir;
 
     public ProjectFolderList() {
     }
 
-    public ProjectFolderList(File rootCatalogDir, FileFilter dirFileFilter, FilenameFilter projectFileFilter) {
+    public ProjectFolderList(String rootCatalogDir, FileFilter dirFileFilter, FilenameFilter projectFileFilter) {
         this.rootCatalogDir = rootCatalogDir;
         this.dirFileFilter = dirFileFilter;
         this.projectFileFilter = projectFileFilter;
     }
-
+@PostConstruct
     public void process() {
-        processDir(rootCatalogDir);
+        LOG.info("Сканирую коневую папку проекта: {}", rootCatalogDir);
+        processDir(new File(rootCatalogDir));
     }
 
     private void processDir(File dir) {

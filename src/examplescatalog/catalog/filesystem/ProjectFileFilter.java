@@ -20,6 +20,14 @@ class ProjectFileFilter implements FilenameFilter {
     @Value("#{settings.projectFileMasks}")
     private List<ProjectFileMask> projectFileMasks;
 
+    ProjectFileFilter() {
+    }
+
+    ProjectFileFilter(List<ProjectFileMask> projectFileMasks) {
+        this.projectFileMasks = projectFileMasks;
+        init();
+    }
+
     @PostConstruct
     private void init() {
         for (ProjectFileMask mask : projectFileMasks) {
