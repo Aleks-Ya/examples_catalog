@@ -1,6 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.settings.ProjectFileMask;
+import org.springframework.context.support.StaticApplicationContext;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -20,6 +21,10 @@ public class ProjectFolderListTest {
         ProjectFileFilter projectFileFilter = initMasks();
 
         File tempRootDir = initCatalogDir();
+        StaticApplicationContext context = new StaticApplicationContext();
+
+        ProjectFolderList folderList = context.getBeanFactory().createBean(ProjectFolderList.class);
+
 
         tempRootDir.toString();
     }
