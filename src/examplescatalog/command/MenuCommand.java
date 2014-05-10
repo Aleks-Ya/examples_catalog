@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * todo Реализовать в виде html-меню на открывшейся странице браузера
  */
 @Component
-public class MenuCommand implements ICommand {
+class MenuCommand implements ICommand {
     @Override
     public void execute(Project project) {
         throw new UnsupportedOperationException();

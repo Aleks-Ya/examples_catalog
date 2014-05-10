@@ -13,7 +13,7 @@ import java.util.List;
  * Читает настройки из переменных окружения.
  */
 @Component
-public class EnvironmentSettings implements ISettings {
+class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
     private String defaultCommand;

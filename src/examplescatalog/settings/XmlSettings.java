@@ -25,7 +25,7 @@ import java.util.List;
  */
 @XmlRootElement(name = "settings")
 @SuppressWarnings("unused")
-public class XmlSettings implements ISettings {
+class XmlSettings implements ISettings {
     @XmlAttribute
     private int port;
     @XmlAttribute
