@@ -17,7 +17,7 @@ import java.io.IOException;
 @Component
 class ExplorerCommand implements ICommand {
     private static final Logger LOG = LoggerFactory.getLogger(ExplorerCommand.class);
-    @Autowired
+    @Value("#{T(java.awt.Desktop).desktop}")
     private Desktop desktop;
 
     @Override
