@@ -16,7 +16,7 @@ import java.util.Properties;
  * Конфигурация переменных окружения.
  */
 @Configuration
-@Profile(PrFolderListTest.TEST_PROFILE)
+@Profile(CatalogTest.TEST_PROFILE)
 class TestEnvironmentConfig {
 
     @Bean(name = "envMap")

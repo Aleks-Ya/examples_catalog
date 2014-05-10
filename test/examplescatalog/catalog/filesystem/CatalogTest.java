@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class PrFolderListTest {
+public class CatalogTest {
     public static final String TEST_PROFILE = "test";
 
     //todo удалить временную папку после теста
