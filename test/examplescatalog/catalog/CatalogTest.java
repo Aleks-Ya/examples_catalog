@@ -1,4 +1,4 @@
-package examplescatalog.catalog.filesystem;
+package examplescatalog.catalog;
 
 import examplescatalog.catalog.Catalog;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
