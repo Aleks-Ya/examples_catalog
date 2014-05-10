@@ -1,7 +1,6 @@
-package examplescatalog.catalog.filesystem;
+package examplescatalog.catalog.filesystem.filefilter;
 
 import examplescatalog.settings.PrFileMask;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +17,10 @@ import java.util.regex.Pattern;
 @Component
 class PrFileFilter implements FilenameFilter {
     private List<Pattern> masks = new ArrayList<>();
+    @Value("#{settings.projectFileMasks}")
     private List<PrFileMask> prFileMasks;
 
-    @Autowired
-    PrFileFilter(@Value("#{settings.projectFileMasks}") List<PrFileMask> prFileMasks) {
-        this.prFileMasks = prFileMasks;
-        init();
-    }
-
-    //todo использовать postconstruct
+    @PostConstruct
     private void init() {
         for (PrFileMask mask : prFileMasks) {
             this.masks.add(Pattern.compile(mask.getMask()));

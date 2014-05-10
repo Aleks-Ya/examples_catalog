@@ -1,4 +1,4 @@
-package examplescatalog.catalog.filesystem;
+package examplescatalog.catalog.filesystem.filefilter;
 
 import org.springframework.stereotype.Component;
 

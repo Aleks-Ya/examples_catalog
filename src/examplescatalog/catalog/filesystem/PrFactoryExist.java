@@ -4,6 +4,7 @@ import examplescatalog.catalog.Catalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,18 +15,14 @@ import java.io.IOException;
  */
 @Component
 class PrFactoryExist {
+    @Autowired
     private Catalog catalog;
+    @Autowired
     private PrIdList prFolderList;
+    @Autowired
     private PrSaver prSaver;
 
-    @Autowired
-    public PrFactoryExist(PrIdList prIdList, PrSaver prSaver, Catalog catalog) throws IOException {
-        this.prFolderList = prIdList;
-        this.prSaver = prSaver;
-        this.catalog = catalog;
-        init();
-    }
-
+    @PostConstruct
     private void init() throws IOException {
         for (File prDir : prFolderList.getPrWithIdFile()) {
             catalog.addProject(prSaver.load(prDir));

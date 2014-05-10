@@ -3,9 +3,13 @@ package examplescatalog.catalog.filesystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +23,12 @@ class PrIdList {
     private static final Logger LOG = LoggerFactory.getLogger(PrIdList.class);
     private List<File> projectWithIdFile = new ArrayList<>();
     private List<File> projectWithoutIdFile = new ArrayList<>();
-    private PrFolderList prFolderList;
-    private PrIdFileFilter prIdFileFilter;
-
     @Autowired
-    public PrIdList(PrFolderList prFolderList, PrIdFileFilter prIdFileFilter) {
-        this.prFolderList = prFolderList;
-        this.prIdFileFilter = prIdFileFilter;
-        init();
-    }
+    private PrFolderList prFolderList;
+    @Value("#{prIdFileFilter}")
+    private FilenameFilter prIdFileFilter;
 
+    @PostConstruct
     private void init() {
         for (File projectFolder : prFolderList.getProjectFolders()) {
             if (projectFolder.listFiles(prIdFileFilter).length > 0) {

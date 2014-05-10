@@ -3,7 +3,6 @@ package examplescatalog.catalog.filesystem;
 import examplescatalog.catalog.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,13 +21,8 @@ class PrSaver {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String DEFAULT_COMMAND = "default_command";
+    @Value("#{settings.projectIdFilename}")
     private String prIdFilename;
-
-    @Autowired
-    public PrSaver(
-            @Value("#{settings.projectIdFilename}") String prIdFilename) {
-        this.prIdFilename = prIdFilename;
-    }
 
     public void save(Project pr) throws IOException {
         LOG.debug("Save project: {}", pr);
