@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Команда "Открыть меню для выбора другой команды".
+ * todo Реализовать в виде html-меню на открывшейся странице браузера
  */
 @Component
 public class MenuCommand implements ICommand {

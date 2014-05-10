@@ -31,6 +31,7 @@ class RequestProcessor implements Runnable {
     public void run() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            //todo Вывести на html-страничку содержимое идентификационного файла проекта и файла description.txt
             String head = reader.readLine();
             reader.close();
 

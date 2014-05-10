@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 
 public class PrFolderListTest {
-    //удалить временную папку после теста
+    //todo удалить временную папку после теста
     @Test
     public void testGetProjectFolders() throws Exception {
         File tempRootDir = initCatalogDir();
