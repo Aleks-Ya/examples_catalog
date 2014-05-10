@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Читает настройки из переменных окружения.
@@ -22,24 +23,26 @@ class EnvironmentSettings implements ISettings {
     private String examplesRoot;
     @Autowired
     @Qualifier("xmlSettings")
-    private ISettings xmlSettings;
+    private ISettings parent;
     @Value("EXAMPLES_ROOT")
     private String examplesRootEnvironment;
     @Value("INTELLIJ_IDEA_PATH")
     private String intellijIdeaPathEnvironment;
+    @Value("#{envMap}")
+    private Map<String, String> envMap;
 
     @PostConstruct
     private void init() {
-        port = xmlSettings.getPort();
-        projectIdFilename = xmlSettings.getProjectIdFilename();
-        defaultCommand = xmlSettings.getDefaultCommand();
-        masks = xmlSettings.getProjectFileMasks();
+        port = parent.getPort();
+        projectIdFilename = parent.getProjectIdFilename();
+        defaultCommand = parent.getDefaultCommand();
+        masks = parent.getProjectFileMasks();
 
-        String exampleRootEnv = System.getenv(examplesRootEnvironment);
-        examplesRoot = (StringUtils.isEmpty(exampleRootEnv)) ? xmlSettings.getExamplesRoot() : exampleRootEnv;
+        String exampleRootEnv = envMap.get(examplesRootEnvironment);
+        examplesRoot = (StringUtils.isEmpty(exampleRootEnv)) ? parent.getExamplesRoot() : exampleRootEnv;
 
-        String intellijIdeaPathEnv = System.getenv(intellijIdeaPathEnvironment);
-        intellijIdeaPath = (StringUtils.isEmpty(intellijIdeaPathEnv)) ? xmlSettings.getIntellijIdeaPath() : intellijIdeaPathEnv;
+        String intellijIdeaPathEnv = envMap.get(intellijIdeaPathEnvironment);
+        intellijIdeaPath = (StringUtils.isEmpty(intellijIdeaPathEnv)) ? parent.getIntellijIdeaPath() : intellijIdeaPathEnv;
     }
 
     @Override

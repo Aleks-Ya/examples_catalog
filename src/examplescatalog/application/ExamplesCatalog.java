@@ -9,9 +9,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class ExamplesCatalog {
     private static final Logger LOG = LoggerFactory.getLogger(ExamplesCatalog.class);
+    public static final String RUN_PROFILE = "run";
 
     public static void main(String[] args) {
         LOG.info("ExamplesCatalog started");
-        new AnnotationConfigApplicationContext("examplescatalog");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.getEnvironment().addActiveProfile(RUN_PROFILE);
+        context.scan("examplescatalog");
+        context.refresh();
     }
 }

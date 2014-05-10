@@ -1,6 +1,5 @@
 package examplescatalog.catalog;
 
-import examplescatalog.catalog.Project;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
