@@ -30,13 +30,17 @@ class PrSaver {
         props.setProperty(ID, pr.getId());
         props.setProperty(NAME, pr.getName());
         props.setProperty(DEFAULT_COMMAND, pr.getCommand());
-        props.store(new FileWriter(new File(pr.getFolder(), prIdFilename)), "Example Catalog Project ID file");
+        final FileWriter writer = new FileWriter(new File(pr.getFolder(), prIdFilename));
+        props.store(writer, "Example Catalog Project ID file");
+        writer.close();
     }
 
     public Project load(File prDir) throws IOException {
         Properties props = new Properties();
-        props.load(new FileReader(new File(prDir, prIdFilename)));
+        final FileReader reader = new FileReader(new File(prDir, prIdFilename));
+        props.load(reader);
         Project pr = new Project(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEFAULT_COMMAND));
+        reader.close();
         LOG.debug("Project loaded: {}", pr);
         return pr;
     }
