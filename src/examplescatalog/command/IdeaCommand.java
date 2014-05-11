@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Команда "Открыть проект в Idea".
+ * todo Реализовать IdeaCommand
  */
 @Component
 class IdeaCommand implements ICommand {
