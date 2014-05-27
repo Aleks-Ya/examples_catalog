@@ -38,8 +38,8 @@ class PrFolderList {
 
     private void processDir(File dir, int counter) {
         counter++;
-        File[] projectFiles = dir.listFiles(prFileFilter);
-        if (projectFiles.length > 0) {
+        File[] prFiles = dir.listFiles(prFileFilter);
+        if (prFiles.length > 0) {
             prFolders.add(dir);
         }
 
@@ -49,7 +49,7 @@ class PrFolderList {
         }
     }
 
-    List<File> getProjectFolders() {
+    List<File> getPrFolders() {
         return prFolders;
     }
 }

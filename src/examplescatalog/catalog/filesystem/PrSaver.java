@@ -1,6 +1,6 @@
 package examplescatalog.catalog.filesystem;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,10 +22,10 @@ class PrSaver {
     private static final String NAME = "name";
     private static final String DEF_CMD = "def_cmd";
 
-    @Value("#{settings.projectIdFilename}")
+    @Value("#{settings.prIdFilename}")
     private String prIdFilename;
 
-    void save(Project pr) throws IOException {
+    void save(Pr pr) throws IOException {
         LOG.debug("Save project: {}", pr);
         Properties props = new Properties();
         props.setProperty(ID, pr.getId());
@@ -36,11 +36,11 @@ class PrSaver {
         writer.close();
     }
 
-    Project load(File prDir) throws IOException {
+    Pr load(File prDir) throws IOException {
         Properties props = new Properties();
         final FileReader reader = new FileReader(new File(prDir, prIdFilename));
         props.load(reader);
-        Project pr = new Project(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEF_CMD));
+        Pr pr = new Pr(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEF_CMD));
         reader.close();
         LOG.debug("Project loaded: {}", pr);
         return pr;

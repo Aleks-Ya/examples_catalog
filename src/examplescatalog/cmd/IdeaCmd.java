@@ -1,6 +1,6 @@
 package examplescatalog.cmd;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 class IdeaCmd implements ICmd {
     @Override
-    public void execute(Project project) {
+    public void execute(Pr pr) {
         throw new UnsupportedOperationException();
     }
 }

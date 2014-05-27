@@ -8,9 +8,9 @@ import java.util.List;
 public interface ISettings {
     int getPort();
 
-    List<PrFileMask> getProjectFileMasks();
+    List<PrFileMask> getPrFileMasks();
 
-    String getProjectIdFilename();
+    String getPrIdFilename();
 
     String getExamplesRoot();
 

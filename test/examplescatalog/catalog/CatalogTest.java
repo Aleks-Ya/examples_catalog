@@ -24,10 +24,10 @@ public class CatalogTest {
     }
 
     @Test
-    public void testGetProjectFolders() throws Exception {
+    public void testGetPrFolders() throws Exception {
 
         Catalog catalog = context.getBean(Catalog.class);
-        assertEquals(catalog.getAllProjects().size(), 3);
+        assertEquals(catalog.getAllPrs().size(), 3);
     }
 
     @AfterClass

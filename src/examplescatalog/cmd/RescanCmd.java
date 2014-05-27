@@ -1,6 +1,6 @@
 package examplescatalog.cmd;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import examplescatalog.catalog.filesystem.PrFolderScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ class RescanCmd implements ICmd {
     private PrFolderScanner scanner;
 
     @Override
-    public void execute(Project project) throws CmdException {
+    public void execute(Pr pr) throws CmdException {
         scanner.scan();
     }
 }

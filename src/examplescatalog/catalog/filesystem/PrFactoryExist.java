@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Создает объекты Project на основе 2х списков папок:
+ * Создает объекты Pr на основе 2х списков папок:
  * 1. Папки с идентификационным файлом проекта
  * 2. Без идентификационного файла
  */
@@ -23,7 +23,7 @@ class PrFactoryExist {
 
     void init() throws IOException {
         for (File prDir : prFolderList.getPrWithIdFile()) {
-            catalog.addProject(prSaver.load(prDir));
+            catalog.addPr(prSaver.load(prDir));
         }
     }
 }

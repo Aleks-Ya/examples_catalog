@@ -1,7 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Catalog;
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ import java.util.Random;
 @Component()
 class PrIdGenerator {
     private static final Logger LOG = LoggerFactory.getLogger(PrIdGenerator.class);
-    private final List<Integer> projectIdList = new ArrayList<>();
+    private final List<Integer> prIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();
     @Autowired
     private Catalog catalog;
 
     public void generate() {
-        for (Project pr : catalog.getAllProjects()) {
-            projectIdList.add(Integer.valueOf(pr.getId()));
+        for (Pr pr : catalog.getAllPrs()) {
+            prIdList.add(Integer.valueOf(pr.getId()));
         }
     }
 
@@ -32,8 +32,8 @@ class PrIdGenerator {
         Integer next;
         do {
             next = Math.abs(RANDOM.nextInt());
-        } while (projectIdList.contains(next));
-        projectIdList.add(next);
+        } while (prIdList.contains(next));
+        prIdList.add(next);
         LOG.debug("Generated project id: {}", next);
         return next.toString();
     }

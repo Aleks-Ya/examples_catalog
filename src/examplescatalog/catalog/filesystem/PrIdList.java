@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,30 +19,30 @@ import java.util.List;
 @Component
 class PrIdList {
     private static final Logger LOG = LoggerFactory.getLogger(PrIdList.class);
-    private List<File> projectWithIdFile = new ArrayList<>();
-    private List<File> projectWithoutIdFile = new ArrayList<>();
+    private List<File> prWithIdFile = new ArrayList<>();
+    private List<File> prWithoutIdFile = new ArrayList<>();
     @Autowired
     private PrFolderList prFolderList;
     @Value("#{prIdFileFilter}")
     private FilenameFilter prIdFileFilter;
 
     void init() {
-        for (File projectFolder : prFolderList.getProjectFolders()) {
-            if (projectFolder.listFiles(prIdFileFilter).length > 0) {
-                projectWithIdFile.add(projectFolder);
+        for (File prFolder : prFolderList.getPrFolders()) {
+            if (prFolder.listFiles(prIdFileFilter).length > 0) {
+                prWithIdFile.add(prFolder);
             } else {
-                projectWithoutIdFile.add(projectFolder);
+                prWithoutIdFile.add(prFolder);
             }
         }
-        LOG.info("Found project folders WITH id file: {}", projectWithIdFile.size());
-        LOG.info("Found project folders WITHOUT id file: {}", projectWithoutIdFile.size());
+        LOG.info("Found project folders WITH id file: {}", prWithIdFile.size());
+        LOG.info("Found project folders WITHOUT id file: {}", prWithoutIdFile.size());
     }
 
     List<File> getPrWithIdFile() {
-        return projectWithIdFile;
+        return prWithIdFile;
     }
 
     List<File> getPrWithoutIdFile() {
-        return projectWithoutIdFile;
+        return prWithoutIdFile;
     }
 }

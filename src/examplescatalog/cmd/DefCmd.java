@@ -1,6 +1,6 @@
 package examplescatalog.cmd;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ class DefCmd implements ICmd {
     private String defCmdCode;
 
     @Override
-    public void execute(Project project) throws CmdException {
-        if (project != null) {
+    public void execute(Pr pr) throws CmdException {
+        if (pr != null) {
             ICmd cmdToExecute = cmdMap.get(defCmdCode);
-            ICmd cmd = cmdMap.get(project.getCmd());
+            ICmd cmd = cmdMap.get(pr.getCmd());
             if (cmd != null) {
                 cmdToExecute = cmd;
             }
-            cmdToExecute.execute(project);
+            cmdToExecute.execute(pr);
         } else {
             LOG.error("Project is null.");
         }

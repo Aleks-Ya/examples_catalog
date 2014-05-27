@@ -5,13 +5,13 @@ import java.io.File;
 /**
  * Пример из каталога примеров.
  */
-public class Project {
+public class Pr {
     private String id;
     private String name;
     private File folder;
     private String cmd;
 
-    public Project(String id, String name, File folder, String cmd) {
+    public Pr(String id, String name, File folder, String cmd) {
         this.id = id;
         this.name = name;
         this.folder = folder;

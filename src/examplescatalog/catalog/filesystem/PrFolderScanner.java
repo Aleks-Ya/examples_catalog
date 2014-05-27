@@ -37,7 +37,7 @@ public class PrFolderScanner {
             prFolderList.process();
             prIdList.init();
             prFactoryExist.init();
-            prFactoryNotExist.createProjects();
+            prFactoryNotExist.createPrs();
             prIdGenerator.generate();
             catalog.setReady(true);
         } catch (IOException e) {

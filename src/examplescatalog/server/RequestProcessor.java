@@ -1,7 +1,7 @@
 package examplescatalog.server;
 
 import examplescatalog.catalog.Catalog;
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import examplescatalog.cmd.CmdException;
 import examplescatalog.cmd.ICmd;
 import org.slf4j.Logger;
@@ -46,8 +46,8 @@ class RequestProcessor implements Runnable {
             }
 
             ICmd cmd = cmdResolver.getCmd(target, request);
-            Project project = prResolver.getProject(target, request);
-            cmd.execute(project);
+            Pr pr = prResolver.getPr(target, request);
+            cmd.execute(pr);
         } catch (CmdException | InterruptedException e) {
             LOG.error(e.getMessage(), e);
         }

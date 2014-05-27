@@ -1,6 +1,6 @@
 package examplescatalog.cmd;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ class ExitCmd implements ICmd {
     private static final Logger LOG = LoggerFactory.getLogger(ExitCmd.class);
 
     @Override
-    public void execute(Project project) {
+    public void execute(Pr pr) {
         LOG.info("Exit command");
         System.exit(0);
     }

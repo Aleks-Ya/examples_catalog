@@ -1,6 +1,6 @@
 package examplescatalog.cmd;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 
 /**
  * Команда, выполняемая в ответ на запрос серверу.
@@ -10,5 +10,5 @@ public interface ICmd {
     /**
      * Выполнить команду.
      */
-    void execute(Project project) throws CmdException;
+    void execute(Pr pr) throws CmdException;
 }

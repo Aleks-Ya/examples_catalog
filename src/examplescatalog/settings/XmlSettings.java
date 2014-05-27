@@ -29,10 +29,10 @@ class XmlSettings implements ISettings {
     @XmlAttribute
     private int port;
     @XmlAttribute
-    private String projectIdFilename;
+    private String prIdFilename;
     @XmlAttribute
     private String defCmd;
-    @XmlElementWrapper(name = "projectFileMasks")
+    @XmlElementWrapper(name = "prFileMasks")
     @XmlElement(name = "mask")
     private List<PrFileMask> masks;
 
@@ -68,13 +68,13 @@ class XmlSettings implements ISettings {
     }
 
     @Override
-    public List<PrFileMask> getProjectFileMasks() {
+    public List<PrFileMask> getPrFileMasks() {
         return masks;
     }
 
     @Override
-    public String getProjectIdFilename() {
-        return projectIdFilename;
+    public String getPrIdFilename() {
+        return prIdFilename;
     }
 
     @Override

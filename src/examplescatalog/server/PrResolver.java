@@ -1,7 +1,7 @@
 package examplescatalog.server;
 
 import examplescatalog.catalog.Catalog;
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +16,9 @@ class PrResolver {
     @Autowired
     private Catalog catalog;
 
-    Project getProject(String target, HttpServletRequest request) {
+    Pr getPr(String target, HttpServletRequest request) {
         String prParameterCode = request.getParameter("pr");
-        Project pr = catalog.getPrById(prParameterCode);
+        Pr pr = catalog.getPrById(prParameterCode);
         if (pr != null) {
             return pr;
         } else {

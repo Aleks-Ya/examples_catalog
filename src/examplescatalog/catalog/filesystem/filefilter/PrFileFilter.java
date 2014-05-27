@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 @Component
 class PrFileFilter implements FilenameFilter {
     private List<Pattern> masks = new ArrayList<>();
-    @Value("#{settings.projectFileMasks}")
+    @Value("#{settings.prFileMasks}")
     private List<PrFileMask> prFileMasks;
 
     @PostConstruct

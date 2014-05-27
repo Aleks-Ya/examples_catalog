@@ -12,30 +12,30 @@ import java.util.Map;
  */
 @Component
 public class Catalog {
-    private Map<String, Project> projects = new HashMap<>();
+    private Map<String, Pr> prs = new HashMap<>();
 
     /**
      * Каталог обновлен и готов к использованию.
      */
     private boolean isReady = false;
 
-    public Project getPrById(String projectId) {
-        return projects.get(projectId);
+    public Pr getPrById(String prId) {
+        return prs.get(prId);
     }
 
-    public List<Project> getAllProjects() {
-        return new ArrayList<>(projects.values());
+    public List<Pr> getAllPrs() {
+        return new ArrayList<>(prs.values());
     }
 
-    public void addProject(Project project) {
-        projects.put(project.getId(), project);
+    public void addPr(Pr pr) {
+        prs.put(pr.getId(), pr);
     }
 
     /**
      * Очищает каталог примеров.
      */
     public void clear() {
-        projects.clear();
+        prs.clear();
     }
 
     public boolean isReady() {

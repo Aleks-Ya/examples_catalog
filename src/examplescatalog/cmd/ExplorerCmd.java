@@ -1,6 +1,6 @@
 package examplescatalog.cmd;
 
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,8 +20,8 @@ class ExplorerCmd implements ICmd {
     private Desktop desktop;
 
     @Override
-    public void execute(Project project) {
-        File folder = project.getFolder();
+    public void execute(Pr pr) {
+        File folder = pr.getFolder();
         LOG.info("Open folder in explorer: {}", folder.getAbsolutePath());
         try {
             desktop.open(folder);

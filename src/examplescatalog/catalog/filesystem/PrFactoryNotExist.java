@@ -1,7 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Catalog;
-import examplescatalog.catalog.Project;
+import examplescatalog.catalog.Pr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +28,17 @@ class PrFactoryNotExist {
     @Autowired
     private PrIdList prIdList;
 
-    void createProjects() throws IOException {
+    void createPrs() throws IOException {
         for (File prDir : prIdList.getPrWithoutIdFile()) {
             String id = prIdGenerator.generateId();
-            createProject(prDir, id);
+            createPr(prDir, id);
         }
     }
 
-    private void createProject(File folder, String prId) throws IOException {
-        Project pr = new Project(prId, folder.getName(), folder, defCmd);
+    private void createPr(File folder, String prId) throws IOException {
+        Pr pr = new Pr(prId, folder.getName(), folder, defCmd);
         LOG.info("Project created: {}", pr);
         prSaver.save(pr);
-        catalog.addProject(pr);
+        catalog.addPr(pr);
     }
 }

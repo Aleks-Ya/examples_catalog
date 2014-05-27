@@ -11,11 +11,11 @@ import java.io.FilenameFilter;
  */
 @Component
 class PrIdFileFilter implements FilenameFilter {
-    @Value("#{settings.projectIdFilename}")
-    private String projectIdFilename;
+    @Value("#{settings.prIdFilename}")
+    private String prIdFilename;
 
     @Override
     public boolean accept(File dir, String name) {
-        return name.equals(projectIdFilename);
+        return name.equals(prIdFilename);
     }
 }
