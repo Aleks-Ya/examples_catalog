@@ -6,26 +6,35 @@ import examplescatalog.command.CommandException;
 import examplescatalog.command.ICommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Обработчик запроса к серверу.
  */
+@Component
+@Scope("prototype")
 class RequestProcessor implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(RequestProcessor.class);
-    private HttpServletRequest request;
-    private Map<String, ICommand> commandMap;
-    private Catalog catalog;
     private String target;
+    private HttpServletRequest request;
 
-    RequestProcessor(String target, HttpServletRequest request, Map<String, ICommand> commandMap, Catalog catalog) {
+    @Autowired
+    private Catalog catalog;
+
+    @Autowired
+    private CommandResolver commandResolver;
+
+    @Autowired
+    private PrResolver prResolver;
+
+    RequestProcessor(String target, HttpServletRequest request) {
         this.target = target;
         this.request = request;
-        this.commandMap = commandMap;
-        this.catalog = catalog;
     }
 
     @Override
@@ -35,17 +44,11 @@ class RequestProcessor implements Runnable {
                 LOG.warn("Wait catalog ready");
                 TimeUnit.SECONDS.sleep(1);
             }
-            String prId = target.replace("/", "");
-            LOG.info("Received project id: {}", prId);
-            Project project = catalog.getPrById(prId);
-            if (project == null) {
-                throw new ServerException(String.format("Project not found by id: %s", prId));
-            }
 
-            //todo применить команду RescanCommand
-            ICommand command = commandMap.get("explorerCommand");
+            ICommand command = commandResolver.getCommand(target, request);
+            Project project = prResolver.getProject(target, request);
             command.execute(project);
-        } catch (CommandException | ServerException | InterruptedException e) {
+        } catch (CommandException | InterruptedException e) {
             LOG.error(e.getMessage(), e);
         }
     }
