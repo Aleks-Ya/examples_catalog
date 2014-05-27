@@ -18,8 +18,8 @@ import java.util.concurrent.Executor;
  * Сервер слушает порт, принимает http-запросы и вызывает соответствующие команды.
  */
 @Component
-public class Server {
-    private static final Logger LOG = LoggerFactory.getLogger(Server.class);
+public class CatalogServer {
+    private static final Logger LOG = LoggerFactory.getLogger(CatalogServer.class);
     @Value("#{settings.port}")
     private int port;
     @Autowired

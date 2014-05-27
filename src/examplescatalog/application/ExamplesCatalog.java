@@ -1,7 +1,7 @@
 package examplescatalog.application;
 
 import examplescatalog.catalog.filesystem.PrFolderScanner;
-import examplescatalog.server.Server;
+import examplescatalog.server.CatalogServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -21,6 +21,6 @@ public class ExamplesCatalog {
         context.refresh();
 
         context.getBean(PrFolderScanner.class).scan();
-        context.getBean(Server.class).start();
+        context.getBean(CatalogServer.class).start();
     }
 }
