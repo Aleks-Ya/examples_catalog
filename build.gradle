@@ -6,7 +6,8 @@ sourceSets.test.java.srcDirs 'test'
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7', 'org.slf4j:slf4j-log4j12:1.7.7', 'log4j:log4j:1.2.17',
             'org.springframework:spring-context:4.0.5.RELEASE',
-            'org.apache.commons:commons-lang3:3.3.2', 'org.apache.commons:commons-collections4:4.0'
+            'org.apache.commons:commons-lang3:3.3.2', 'org.apache.commons:commons-collections4:4.0',
+            'org.eclipse.jetty:jetty-server:9.2.0.v20140526'
     testCompile 'org.testng:testng:6.8.8', 'org.mockito:mockito-all:1.9.5'
 }
 repositories {

@@ -1,18 +1,12 @@
 package examplescatalog.server;
 
-import examplescatalog.catalog.Catalog;
-import examplescatalog.command.ICommand;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Map;
-import java.util.concurrent.Executor;
 
 /**
  * Сервер слушает порт, принимает http-запросы и вызывает соответствующие команды.
@@ -22,23 +16,21 @@ public class CatalogServer {
     private static final Logger LOG = LoggerFactory.getLogger(CatalogServer.class);
     @Value("#{settings.port}")
     private int port;
+
     @Autowired
-    private Executor executor;
-    @Autowired
-    private Catalog catalog;
-    @Autowired
-    private Map<String, ICommand> commandMap;
+    private RequestHander hander;
 
     public void start() {
         LOG.info("Server started");
         try {
-            ServerSocket serverSocket = new ServerSocket(port);
-            while (true) {
-                Socket socket = serverSocket.accept();
-                executor.execute(new RequestProcessor(socket, commandMap, catalog));
-                // todo инстанцировать через контекст
-            }
-        } catch (IOException e) {
+            ContextHandler context = new ContextHandler("/");
+            context.setHandler(hander);
+
+            Server jetty = new Server(port);
+            jetty.setHandler(context);
+            jetty.start();
+            jetty.join();
+        } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         }
     }

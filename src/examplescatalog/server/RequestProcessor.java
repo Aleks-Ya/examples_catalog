@@ -6,10 +6,7 @@ import examplescatalog.command.ICommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -18,12 +15,14 @@ import java.util.concurrent.TimeUnit;
  */
 class RequestProcessor implements Runnable {
     private static final Logger LOG = LoggerFactory.getLogger(RequestProcessor.class);
-    private Socket socket;
+    private HttpServletRequest request;
     private Map<String, ICommand> commandMap;
     private Catalog catalog;
+    private String target;
 
-    RequestProcessor(Socket socket, Map<String, ICommand> commandMap, Catalog catalog) {
-        this.socket = socket;
+    RequestProcessor(String target, HttpServletRequest request, Map<String, ICommand> commandMap, Catalog catalog) {
+        this.target = target;
+        this.request = request;
         this.commandMap = commandMap;
         this.catalog = catalog;
     }
@@ -35,13 +34,7 @@ class RequestProcessor implements Runnable {
                 LOG.warn("Wait catalog ready");
                 TimeUnit.SECONDS.sleep(1);
             }
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            //todo Вывести на html-страничку содержимое идентификационного файла проекта и файла description.txt
-            String head = reader.readLine();
-            reader.close();
-
-            String[] strings = head.split(" ");
-            String prId = strings[1].substring(1);
+            String prId = target.replace("/","");
             LOG.info("Received project id: {}", prId);
             Project project = catalog.getPrById(prId);
             if (project == null) {
@@ -51,7 +44,7 @@ class RequestProcessor implements Runnable {
             //todo применить команду RescanCommand
             ICommand command = commandMap.get("explorerCommand");
             command.execute(project);
-        } catch (IOException | ServerException | InterruptedException e) {
+        } catch (ServerException | InterruptedException e) {
             LOG.error(e.getMessage(), e);
         }
     }
