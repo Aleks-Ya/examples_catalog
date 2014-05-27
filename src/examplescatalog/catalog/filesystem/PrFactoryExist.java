@@ -4,7 +4,6 @@ import examplescatalog.catalog.Catalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,8 +21,7 @@ class PrFactoryExist {
     @Autowired
     private PrSaver prSaver;
 
-    @PostConstruct
-    private void init() throws IOException {
+    void init() throws IOException {
         for (File prDir : prFolderList.getPrWithIdFile()) {
             catalog.addProject(prSaver.load(prDir));
         }

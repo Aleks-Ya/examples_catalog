@@ -1,9 +1,7 @@
 package examplescatalog.catalog.filesystem.filefilter;
 
-import examplescatalog.application.ExamplesCatalog;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import java.io.FileFilter;
 import java.io.FilenameFilter;

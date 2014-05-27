@@ -28,8 +28,7 @@ class PrIdList {
     @Value("#{prIdFileFilter}")
     private FilenameFilter prIdFileFilter;
 
-    @PostConstruct
-    private void init() {
+    void init() {
         for (File projectFolder : prFolderList.getProjectFolders()) {
             if (projectFolder.listFiles(prIdFileFilter).length > 0) {
                 projectWithIdFile.add(projectFolder);
@@ -41,11 +40,11 @@ class PrIdList {
         LOG.info("Found project folders WITHOUT id file: {}", projectWithoutIdFile.size());
     }
 
-    public List<File> getPrWithIdFile() {
+    List<File> getPrWithIdFile() {
         return projectWithIdFile;
     }
 
-    public List<File> getPrWithoutIdFile() {
+    List<File> getPrWithoutIdFile() {
         return projectWithoutIdFile;
     }
 }

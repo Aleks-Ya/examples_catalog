@@ -21,10 +21,11 @@ class PrSaver {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String DEFAULT_COMMAND = "default_command";
+
     @Value("#{settings.projectIdFilename}")
     private String prIdFilename;
 
-    public void save(Project pr) throws IOException {
+    void save(Project pr) throws IOException {
         LOG.debug("Save project: {}", pr);
         Properties props = new Properties();
         props.setProperty(ID, pr.getId());
@@ -35,7 +36,7 @@ class PrSaver {
         writer.close();
     }
 
-    public Project load(File prDir) throws IOException {
+    Project load(File prDir) throws IOException {
         Properties props = new Properties();
         final FileReader reader = new FileReader(new File(prDir, prIdFilename));
         props.load(reader);

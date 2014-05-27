@@ -19,7 +19,7 @@ class RescanCommand implements ICommand {
     private PrFolderScanner scanner;
 
     @Override
-    public void execute(Project project) {
+    public void execute(Project project) throws CommandException {
         scanner.scan();
     }
 }

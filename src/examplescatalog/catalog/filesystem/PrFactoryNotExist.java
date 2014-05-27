@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
@@ -29,15 +28,14 @@ class PrFactoryNotExist {
     @Autowired
     private PrIdList prIdList;
 
-    @PostConstruct
-    public void createProjects() throws IOException {
+    void createProjects() throws IOException {
         for (File prDir : prIdList.getPrWithoutIdFile()) {
             String id = prIdGenerator.generateId();
             createProject(prDir, id);
         }
     }
 
-    public void createProject(File folder, String prId) throws IOException {
+    private void createProject(File folder, String prId) throws IOException {
         Project pr = new Project(prId, folder.getName(), folder, defaultCommand);
         LOG.info("Project created: {}", pr);
         prSaver.save(pr);

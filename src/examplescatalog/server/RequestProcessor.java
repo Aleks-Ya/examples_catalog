@@ -2,6 +2,7 @@ package examplescatalog.server;
 
 import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
+import examplescatalog.command.CommandException;
 import examplescatalog.command.ICommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ class RequestProcessor implements Runnable {
                 LOG.warn("Wait catalog ready");
                 TimeUnit.SECONDS.sleep(1);
             }
-            String prId = target.replace("/","");
+            String prId = target.replace("/", "");
             LOG.info("Received project id: {}", prId);
             Project project = catalog.getPrById(prId);
             if (project == null) {
@@ -44,7 +45,7 @@ class RequestProcessor implements Runnable {
             //todo применить команду RescanCommand
             ICommand command = commandMap.get("explorerCommand");
             command.execute(project);
-        } catch (ServerException | InterruptedException e) {
+        } catch (CommandException | ServerException | InterruptedException e) {
             LOG.error(e.getMessage(), e);
         }
     }

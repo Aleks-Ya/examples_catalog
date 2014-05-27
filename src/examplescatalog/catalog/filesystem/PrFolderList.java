@@ -29,8 +29,7 @@ class PrFolderList {
     @Value("#{settings.examplesRoot}")
     private String rootCatalogDir;
 
-    @PostConstruct
-    public void process() {
+    void process() {
         LOG.info("Scan root folder: {}", rootCatalogDir);
         Integer scannedDirCounter = 0;
         processDir(new File(rootCatalogDir), scannedDirCounter);
@@ -50,7 +49,7 @@ class PrFolderList {
         }
     }
 
-    public List<File> getProjectFolders() {
+    List<File> getProjectFolders() {
         return prFolders;
     }
 }
