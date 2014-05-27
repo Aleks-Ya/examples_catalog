@@ -1,4 +1,4 @@
-package examplescatalog.command;
+package examplescatalog.cmd;
 
 import examplescatalog.catalog.Project;
 import org.slf4j.Logger;
@@ -13,20 +13,20 @@ import java.util.Map;
  * Команда вызывает другую команду, указанную как команда по-умолчанию в идентификационном файле проект.а
  */
 @Component
-class DefaultCommand implements ICommand {
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultCommand.class);
+class DefCmd implements ICmd {
+    private static final Logger LOG = LoggerFactory.getLogger(DefCmd.class);
 
     @Autowired
-    private Map<String, ICommand> cmdMap;
+    private Map<String, ICmd> cmdMap;
 
-    @Value("#{settings.defaultCommand}")
+    @Value("#{settings.defCmd}")
     private String defCmdCode;
 
     @Override
-    public void execute(Project project) throws CommandException {
+    public void execute(Project project) throws CmdException {
         if (project != null) {
-            ICommand cmdToExecute = cmdMap.get(defCmdCode);
-            ICommand cmd = cmdMap.get(project.getCommand());
+            ICmd cmdToExecute = cmdMap.get(defCmdCode);
+            ICmd cmd = cmdMap.get(project.getCmd());
             if (cmd != null) {
                 cmdToExecute = cmd;
             }

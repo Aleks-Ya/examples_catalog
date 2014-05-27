@@ -31,7 +31,7 @@ class XmlSettings implements ISettings {
     @XmlAttribute
     private String projectIdFilename;
     @XmlAttribute
-    private String defaultCommand;
+    private String defCmd;
     @XmlElementWrapper(name = "projectFileMasks")
     @XmlElement(name = "mask")
     private List<PrFileMask> masks;
@@ -88,7 +88,7 @@ class XmlSettings implements ISettings {
     }
 
     @Override
-    public String getDefaultCommand() {
-        return defaultCommand;
+    public String getDefCmd() {
+        return defCmd;
     }
 }

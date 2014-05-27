@@ -17,7 +17,7 @@ import java.util.Map;
 class EnvironmentSettings implements ISettings {
     private int port;
     private String projectIdFilename;
-    private String defaultCommand;
+    private String defCmd;
     private List<PrFileMask> masks;
     private String intellijIdeaPath;
     private String examplesRoot;
@@ -35,7 +35,7 @@ class EnvironmentSettings implements ISettings {
     private void init() {
         port = parent.getPort();
         projectIdFilename = parent.getProjectIdFilename();
-        defaultCommand = parent.getDefaultCommand();
+        defCmd = parent.getDefCmd();
         masks = parent.getProjectFileMasks();
 
         String exampleRootEnv = envMap.get(examplesRootEnvironment);
@@ -71,7 +71,7 @@ class EnvironmentSettings implements ISettings {
     }
 
     @Override
-    public String getDefaultCommand() {
-        return defaultCommand;
+    public String getDefCmd() {
+        return defCmd;
     }
 }

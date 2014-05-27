@@ -20,7 +20,7 @@ class PrSaver {
     private static final Logger LOG = LoggerFactory.getLogger(PrSaver.class);
     private static final String ID = "id";
     private static final String NAME = "name";
-    private static final String DEFAULT_COMMAND = "default_command";
+    private static final String DEF_CMD = "def_cmd";
 
     @Value("#{settings.projectIdFilename}")
     private String prIdFilename;
@@ -30,7 +30,7 @@ class PrSaver {
         Properties props = new Properties();
         props.setProperty(ID, pr.getId());
         props.setProperty(NAME, pr.getName());
-        props.setProperty(DEFAULT_COMMAND, pr.getCommand());
+        props.setProperty(DEF_CMD, pr.getCmd());
         final FileWriter writer = new FileWriter(new File(pr.getFolder(), prIdFilename));
         props.store(writer, "Example Catalog Project ID file");
         writer.close();
@@ -40,7 +40,7 @@ class PrSaver {
         Properties props = new Properties();
         final FileReader reader = new FileReader(new File(prDir, prIdFilename));
         props.load(reader);
-        Project pr = new Project(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEFAULT_COMMAND));
+        Project pr = new Project(props.getProperty(ID), prDir.getName(), prDir, props.getProperty(DEF_CMD));
         reader.close();
         LOG.debug("Project loaded: {}", pr);
         return pr;

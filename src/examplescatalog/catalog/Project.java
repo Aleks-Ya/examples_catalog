@@ -9,13 +9,13 @@ public class Project {
     private String id;
     private String name;
     private File folder;
-    private String command;
+    private String cmd;
 
-    public Project(String id, String name, File folder, String command) {
+    public Project(String id, String name, File folder, String cmd) {
         this.id = id;
         this.name = name;
         this.folder = folder;
-        this.command = command;
+        this.cmd = cmd;
     }
 
     public String getId() {
@@ -30,8 +30,8 @@ public class Project {
         return folder;
     }
 
-    public String getCommand() {
-        return command;
+    public String getCmd() {
+        return cmd;
     }
 
     @Override

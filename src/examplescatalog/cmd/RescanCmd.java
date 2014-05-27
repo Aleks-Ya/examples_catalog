@@ -1,4 +1,4 @@
-package examplescatalog.command;
+package examplescatalog.cmd;
 
 import examplescatalog.catalog.Project;
 import examplescatalog.catalog.filesystem.PrFolderScanner;
@@ -12,14 +12,14 @@ import java.util.List;
  * Команда "Пересканировать каталог проектов".
  */
 @Component
-class RescanCommand implements ICommand {
+class RescanCmd implements ICmd {
     private static final List<String> NAMES = Arrays.asList("/scan");
 
     @Autowired
     private PrFolderScanner scanner;
 
     @Override
-    public void execute(Project project) throws CommandException {
+    public void execute(Project project) throws CmdException {
         scanner.scan();
     }
 }

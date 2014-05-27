@@ -17,8 +17,8 @@ import java.io.IOException;
 @Component
 class PrFactoryNotExist {
     private static final Logger LOG = LoggerFactory.getLogger(PrFactoryNotExist.class);
-    @Value("#{settings.defaultCommand}")
-    private String defaultCommand;
+    @Value("#{settings.defCmd}")
+    private String defCmd;
     @Autowired
     private PrSaver prSaver;
     @Autowired
@@ -36,7 +36,7 @@ class PrFactoryNotExist {
     }
 
     private void createProject(File folder, String prId) throws IOException {
-        Project pr = new Project(prId, folder.getName(), folder, defaultCommand);
+        Project pr = new Project(prId, folder.getName(), folder, defCmd);
         LOG.info("Project created: {}", pr);
         prSaver.save(pr);
         catalog.addProject(pr);

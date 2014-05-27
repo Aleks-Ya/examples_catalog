@@ -2,8 +2,8 @@ package examplescatalog.server;
 
 import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
-import examplescatalog.command.CommandException;
-import examplescatalog.command.ICommand;
+import examplescatalog.cmd.CmdException;
+import examplescatalog.cmd.ICmd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ class RequestProcessor implements Runnable {
     private Catalog catalog;
 
     @Autowired
-    private CommandResolver commandResolver;
+    private CmdResolver cmdResolver;
 
     @Autowired
     private PrResolver prResolver;
@@ -45,10 +45,10 @@ class RequestProcessor implements Runnable {
                 TimeUnit.SECONDS.sleep(1);
             }
 
-            ICommand command = commandResolver.getCommand(target, request);
+            ICmd cmd = cmdResolver.getCmd(target, request);
             Project project = prResolver.getProject(target, request);
-            command.execute(project);
-        } catch (CommandException | InterruptedException e) {
+            cmd.execute(project);
+        } catch (CmdException | InterruptedException e) {
             LOG.error(e.getMessage(), e);
         }
     }

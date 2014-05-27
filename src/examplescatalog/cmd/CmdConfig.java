@@ -1,18 +1,18 @@
-package examplescatalog.command;
+package examplescatalog.cmd;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 /**
- * Конфигурация для пакета command.
+ * Конфигурация для пакета cmd.
  */
 @Configuration
-class CommandConfig {
+class CmdConfig {
 
     @Bean
     @Scope("prototype")
-    ICommand defaultCommand() {
-        return new DefaultCommand();
+    ICmd defCmd() {
+        return new DefCmd();
     }
 }

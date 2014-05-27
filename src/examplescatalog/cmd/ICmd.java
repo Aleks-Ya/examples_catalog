@@ -1,14 +1,14 @@
-package examplescatalog.command;
+package examplescatalog.cmd;
 
 import examplescatalog.catalog.Project;
 
 /**
  * Команда, выполняемая в ответ на запрос серверу.
  */
-public interface ICommand {
+public interface ICmd {
 
     /**
      * Выполнить команду.
      */
-    void execute(Project project) throws CommandException;
+    void execute(Project project) throws CmdException;
 }

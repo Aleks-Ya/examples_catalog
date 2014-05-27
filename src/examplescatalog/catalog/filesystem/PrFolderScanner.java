@@ -1,7 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Catalog;
-import examplescatalog.command.CommandException;
+import examplescatalog.cmd.CmdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +30,7 @@ public class PrFolderScanner {
     @Autowired
     private PrFactoryNotExist prFactoryNotExist;
 
-    public void scan() throws CommandException {
+    public void scan() throws CmdException {
         try {
             catalog.setReady(false);
             catalog.clear();
@@ -41,7 +41,7 @@ public class PrFolderScanner {
             prIdGenerator.generate();
             catalog.setReady(true);
         } catch (IOException e) {
-            throw new CommandException(e);
+            throw new CmdException(e);
         }
     }
 }

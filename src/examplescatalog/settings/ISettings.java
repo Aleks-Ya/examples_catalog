@@ -16,5 +16,5 @@ public interface ISettings {
 
     String getIntellijIdeaPath();
 
-    String getDefaultCommand();
+    String getDefCmd();
 }

@@ -40,7 +40,7 @@ class TestEnvironmentConfig {
         Properties properties = new Properties();
         properties.setProperty("id", "123");
         properties.setProperty("name", "SubDir2");
-        properties.setProperty("default_command", "explorerCommand");
+        properties.setProperty("def_cmd", "explorerCmd");
 
         createPropertiesFile(subDir2, "ExamplesCatalog.properties", properties);
 

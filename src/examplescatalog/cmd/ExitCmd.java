@@ -1,4 +1,4 @@
-package examplescatalog.command;
+package examplescatalog.cmd;
 
 import examplescatalog.catalog.Project;
 import org.slf4j.Logger;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * Команда "Завершить работу приложения".
  */
 @Component
-class ExitCommand implements ICommand {
-    private static final Logger LOG = LoggerFactory.getLogger(ExitCommand.class);
+class ExitCmd implements ICmd {
+    private static final Logger LOG = LoggerFactory.getLogger(ExitCmd.class);
 
     @Override
     public void execute(Project project) {

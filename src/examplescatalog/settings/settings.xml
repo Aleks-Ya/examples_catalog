@@ -3,7 +3,7 @@
 todo Подправить XSD
 todo Исключить из сканирования папки .git, .idea,. classes, out, .gradle.
 -->
-<settings port="2512" projectIdFilename="ExamplesCatalog.properties" defaultCommand="explorerCommand">
+<settings port="2512" projectIdFilename="ExamplesCatalog.properties" defCmd="explorerCmd">
     <projectFileMasks>
         <mask mask=".*.iml" priority="3"/>
         <mask mask=".*.gradle" priority="2"/>
