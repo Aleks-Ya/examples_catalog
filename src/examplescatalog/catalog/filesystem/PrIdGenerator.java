@@ -15,7 +15,7 @@ import java.util.Random;
  * Генератор индетификаторов для проектов.
  */
 @Component()
-public class PrIdGenerator {
+class PrIdGenerator {
     private static final Logger LOG = LoggerFactory.getLogger(PrIdGenerator.class);
     private final List<Integer> projectIdList = new ArrayList<>();
     private static final Random RANDOM = new Random();

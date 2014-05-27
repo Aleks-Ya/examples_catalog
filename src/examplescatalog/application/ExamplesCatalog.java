@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 /**
  * Главный класс для запуска приложения.
  */
-public class ExamplesCatalog {
+class ExamplesCatalog {
     private static final Logger LOG = LoggerFactory.getLogger(ExamplesCatalog.class);
     public static final String RUN_PROFILE = "run";
 
