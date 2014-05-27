@@ -22,7 +22,7 @@ public class PrIdGenerator {
     @Autowired
     private Catalog catalog;
 
-    public void init() {
+    public void generate() {
         for (Project pr : catalog.getAllProjects()) {
             projectIdList.add(Integer.valueOf(pr.getId()));
         }

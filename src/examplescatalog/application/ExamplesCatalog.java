@@ -1,6 +1,6 @@
 package examplescatalog.application;
 
-import examplescatalog.catalog.filesystem.PrIdGenerator;
+import examplescatalog.catalog.filesystem.PrFolderScanner;
 import examplescatalog.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class ExamplesCatalog {
         context.scan("examplescatalog");
         context.refresh();
 
-        context.getBean(PrIdGenerator.class).init();
+        context.getBean(PrFolderScanner.class).scan();
         context.getBean(Server.class).start();
     }
 }

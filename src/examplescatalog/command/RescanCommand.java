@@ -1,21 +1,25 @@
 package examplescatalog.command;
 
-import examplescatalog.catalog.Catalog;
 import examplescatalog.catalog.Project;
+import examplescatalog.catalog.filesystem.PrFolderScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Команда "Пересканировать каталог проектов".
- * todo Реализовать RescanCommand
  */
 @Component
 class RescanCommand implements ICommand {
+    private static final List<String> NAMES = Arrays.asList("/scan");
+
     @Autowired
-    private Catalog catalog;
+    private PrFolderScanner scanner;
 
     @Override
     public void execute(Project project) {
-//        catalog.rescan();
+        scanner.scan();
     }
 }

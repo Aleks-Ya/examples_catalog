@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Обработчик запроса к серверу.
@@ -30,6 +31,10 @@ class RequestProcessor implements Runnable {
     @Override
     public void run() {
         try {
+            while (!catalog.isReady()) {
+                LOG.warn("Wait catalog ready");
+                TimeUnit.SECONDS.sleep(1);
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             //todo Вывести на html-страничку содержимое идентификационного файла проекта и файла description.txt
             String head = reader.readLine();
@@ -43,9 +48,10 @@ class RequestProcessor implements Runnable {
                 throw new ServerException(String.format("Project not found by id: %s", prId));
             }
 
+            //todo применить команду RescanCommand
             ICommand command = commandMap.get("explorerCommand");
             command.execute(project);
-        } catch (IOException | ServerException e) {
+        } catch (IOException | ServerException | InterruptedException e) {
             LOG.error(e.getMessage(), e);
         }
     }
