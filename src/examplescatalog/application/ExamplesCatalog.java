@@ -1,5 +1,7 @@
 package examplescatalog.application;
 
+import examplescatalog.catalog.filesystem.PrIdGenerator;
+import examplescatalog.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,5 +19,8 @@ public class ExamplesCatalog {
         context.getEnvironment().addActiveProfile(RUN_PROFILE);
         context.scan("examplescatalog");
         context.refresh();
+
+        context.getBean(PrIdGenerator.class).init();
+        context.getBean(Server.class).start();
     }
 }
