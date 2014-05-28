@@ -4,6 +4,7 @@ import examplescatalog.catalog.Pr;
 
 /**
  * Команда, выполняемая в ответ на запрос серверу.
+ * todo Добавить командам алиасы
  */
 public interface ICmd {
 

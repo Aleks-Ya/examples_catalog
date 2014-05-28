@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Команда "Пересканировать каталог проектов".
  */
-@Component
+@Component("rescan")
 class RescanCmd implements ICmd {
     private static final List<String> NAMES = Arrays.asList("/scan");
 

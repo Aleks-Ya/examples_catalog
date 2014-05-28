@@ -13,9 +13,9 @@ import java.io.IOException;
 /**
  * Команда "Открыть проект в проводнике".
  */
-@Component
-class ExplorerCmd implements ICmd {
-    private static final Logger LOG = LoggerFactory.getLogger(ExplorerCmd.class);
+@Component("explore")
+class ExploreCmd implements ICmd {
+    private static final Logger LOG = LoggerFactory.getLogger(ExploreCmd.class);
     @Value("#{T(java.awt.Desktop).desktop}")
     private Desktop desktop;
 

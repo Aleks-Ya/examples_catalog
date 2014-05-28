@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Команда "Открыть проект в Idea".
  */
-@Component
+@Component("idea")
 class IdeaCmd implements ICmd {
     private static final Logger LOG = LoggerFactory.getLogger(IdeaCmd.class);
 

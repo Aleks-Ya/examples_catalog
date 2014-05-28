@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Команда вызывает другую команду, указанную как команда по-умолчанию в идентификационном файле проект.а
  */
-@Component
+@Component("def")
 class DefCmd implements ICmd {
     private static final Logger LOG = LoggerFactory.getLogger(DefCmd.class);
 

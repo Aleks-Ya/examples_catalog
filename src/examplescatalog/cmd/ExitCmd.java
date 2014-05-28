@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Команда "Завершить работу приложения".
  */
-@Component
+@Component("exit")
 class ExitCmd implements ICmd {
     private static final Logger LOG = LoggerFactory.getLogger(ExitCmd.class);
 
