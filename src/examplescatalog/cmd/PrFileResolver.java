@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +33,17 @@ public class PrFileResolver {
         for (PrFileMask mask : sortedMaskList) {
             for (File prFile : prFiles) {
                 if (mask.accept(prFile)) {
-                    return prFile;
+                    switch (mask.getPrDirType()) {
+                        case FOLDER: {
+                            return prFile.getParentFile();
+                        }
+                        case FILE: {
+                            return prFile;
+                        }
+                        default: {
+                            throw new RuntimeException();
+                        }
+                    }
                 }
             }
         }

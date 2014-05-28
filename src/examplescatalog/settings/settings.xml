@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <settings port="2512" prIdFilename="ExamplesCatalog.properties" defCmd="explorerCmd">
     <prFileMasks>
-        <mask mask=".*.iml" priority="3"/>
-        <mask mask=".*.gradle" priority="2"/>
-        <mask mask="pom.xml" priority="1"/>
+        <mask mask=".*.iml" priority="3" prDirType="FOLDER"/>
+        <mask mask=".*.gradle" priority="2"  prDirType="FILE"/>
+        <mask mask="pom.xml" priority="1"  prDirType="FILE"/>
     </prFileMasks>
 </settings>

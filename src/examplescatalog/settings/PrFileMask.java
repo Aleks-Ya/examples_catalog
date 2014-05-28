@@ -13,10 +13,20 @@ public class PrFileMask implements Comparable<PrFileMask> {
     @XmlAttribute
     private int priority;
 
+    /**
+     * В качестве параметра передать Idea ссылку на: 1) папку проекта, 2) файл проекта.
+     */
+    @XmlAttribute
+    private PrDirType prDirType;
+
     private Pattern pattern;
 
     public int getPriority() {
         return priority;
+    }
+
+    public PrDirType getPrDirType() {
+        return prDirType;
     }
 
     /**
@@ -32,5 +42,9 @@ public class PrFileMask implements Comparable<PrFileMask> {
     @Override
     public int compareTo(PrFileMask o) {
         return Integer.valueOf(getPriority()).compareTo(o.getPriority());
+    }
+
+    public enum PrDirType {
+        FOLDER, FILE;
     }
 }
