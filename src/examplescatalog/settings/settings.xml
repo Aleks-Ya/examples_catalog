@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--
-todo Подправить XSD
-todo Исключить из сканирования папки .git, .idea,. classes, out, .gradle.
--->
 <settings port="2512" prIdFilename="ExamplesCatalog.properties" defCmd="explorerCmd">
     <prFileMasks>
         <mask mask=".*.iml" priority="3"/>
