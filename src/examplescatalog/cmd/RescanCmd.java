@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Команда "Пересканировать каталог проектов".
+ * todo Запуск команды каждые 5 минут
  */
 @Component("rescan")
 class RescanCmd implements ICmd {
