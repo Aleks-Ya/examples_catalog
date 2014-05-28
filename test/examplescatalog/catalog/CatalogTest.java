@@ -1,5 +1,6 @@
 package examplescatalog.catalog;
 
+import examplescatalog.catalog.filesystem.PrFolderScanner;
 import examplescatalog.settings.ISettings;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.AfterClass;
@@ -25,7 +26,8 @@ public class CatalogTest {
 
     @Test
     public void testGetPrFolders() throws Exception {
-
+        PrFolderScanner scanner = context.getBean(PrFolderScanner.class);
+        scanner.scan();
         Catalog catalog = context.getBean(Catalog.class);
         assertEquals(catalog.getAllPrs().size(), 3);
     }

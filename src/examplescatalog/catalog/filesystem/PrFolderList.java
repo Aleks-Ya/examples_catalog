@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +18,15 @@ import java.util.List;
 @Component
 class PrFolderList {
     private static final Logger LOG = LoggerFactory.getLogger(PrFolderList.class);
+
     @Autowired
     @Qualifier("dirFileFilter")
     private FileFilter dirFileFilter;
+
     @Value("#{prFileFilter}")
-    private FilenameFilter prFileFilter;
+    private FileFilter prFileFilter;
     private List<File> prFolders = new ArrayList<>();
+
     @Value("#{settings.examplesRoot}")
     private String rootCatalogDir;
 

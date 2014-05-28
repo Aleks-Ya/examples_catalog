@@ -17,7 +17,7 @@ class FileFilterConfig {
     }
 
     @Bean(name = "prFileFilter")
-    public FilenameFilter getPrFF() {
+    public FileFilter getPrFF() {
         return new PrFileFilter();
     }
 
