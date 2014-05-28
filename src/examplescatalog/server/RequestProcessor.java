@@ -32,6 +32,7 @@ class RequestProcessor implements Runnable {
     @Autowired
     private PrResolver prResolver;
 
+    @Autowired
     RequestProcessor(String target, HttpServletRequest request) {
         this.target = target;
         this.request = request;
