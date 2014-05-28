@@ -31,6 +31,7 @@ class PrFolderList {
     private String rootCatalogDir;
 
     void process() {
+        prFolders.clear();
         LOG.info("Scan root folder: {}", rootCatalogDir);
         Integer scannedDirCounter = 0;
         processDir(new File(rootCatalogDir), scannedDirCounter);

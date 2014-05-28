@@ -19,14 +19,19 @@ import java.util.List;
 @Component
 class PrIdList {
     private static final Logger LOG = LoggerFactory.getLogger(PrIdList.class);
+
     private List<File> prWithIdFile = new ArrayList<>();
     private List<File> prWithoutIdFile = new ArrayList<>();
+
     @Autowired
     private PrFolderList prFolderList;
+
     @Value("#{prIdFileFilter}")
     private FilenameFilter prIdFileFilter;
 
     void init() {
+        prWithIdFile.clear();
+        prWithoutIdFile.clear();
         for (File prFolder : prFolderList.getPrFolders()) {
             if (prFolder.listFiles(prIdFileFilter).length > 0) {
                 prWithIdFile.add(prFolder);

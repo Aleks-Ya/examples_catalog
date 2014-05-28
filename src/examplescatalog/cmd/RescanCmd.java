@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * Команда "Пересканировать каталог проектов".
- * todo fix Количество проектов плюсуется при повторном сканировании
  */
 @Component("rescan")
 class RescanCmd implements ICmd {
