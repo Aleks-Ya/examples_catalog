@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Составляет список папок проектов.
+ * todo Папки, содержащие идентификационный файл проекта (но без *.gradle, *.iml, pom.xml) тоже считать проектами.
  */
 @Component
 class PrFolderList {
