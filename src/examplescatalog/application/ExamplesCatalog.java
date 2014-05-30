@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * todo Добавить в идентификационный файл свойство ignore=true для пропуска проекта в данной папке (или ignoreSubDirs), чтобы вложенные проекты не воспринимались каталогом
  * todo Убрать def_cmd из генерируемого идентификационного файла
  * todo Убрать name из идентификационного файла (имя берется по имени папки)
+ * todo Добавить теги в идентификационный файл проекта
  */
 public class ExamplesCatalog {
     private static final Logger LOG = LoggerFactory.getLogger(ExamplesCatalog.class);
