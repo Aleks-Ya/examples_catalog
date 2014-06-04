@@ -19,7 +19,6 @@ import java.util.Properties;
 class PrSaver {
     private static final Logger LOG = LoggerFactory.getLogger(PrSaver.class);
     private static final String ID = "id";
-    private static final String NAME = "name";
     private static final String DEF_CMD = "def_cmd";
 
     @Value("#{settings.prIdFilename}")
@@ -29,7 +28,6 @@ class PrSaver {
         LOG.debug("Save project: {}", pr);
         Properties props = new Properties();
         props.setProperty(ID, pr.getId());
-        props.setProperty(NAME, pr.getName());
         props.setProperty(DEF_CMD, pr.getCmd());
         final FileWriter writer = new FileWriter(new File(pr.getFolder(), prIdFilename));
         props.store(writer, "Example Catalog Project ID file");
