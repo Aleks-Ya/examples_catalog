@@ -1,6 +1,7 @@
 package examplescatalog.catalog.filesystem;
 
 import examplescatalog.catalog.Pr;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +29,10 @@ class PrSaver {
         LOG.debug("Save project: {}", pr);
         Properties props = new Properties();
         props.setProperty(ID, pr.getId());
-        props.setProperty(DEF_CMD, pr.getCmd());
+        String cmd = pr.getCmd();
+        if (!StringUtils.isEmpty(cmd)) {
+            props.setProperty(DEF_CMD, cmd);
+        }
         final FileWriter writer = new FileWriter(new File(pr.getFolder(), prIdFilename));
         props.store(writer, "Example Catalog Project ID file");
         writer.close();
