@@ -1,15 +1,11 @@
 package examplescatalog.settings;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import java.io.File;
-import java.util.regex.Pattern;
 
 /**
- * Маска имени файла проекта.
+ * Маска имени файла проекта (с приоритетом).
  */
-public class PrFileMask implements Comparable<PrFileMask> {
-    @XmlAttribute
-    private String mask;
+public class PrFileMask extends FileMask implements Comparable<PrFileMask> {
     @XmlAttribute
     private int priority;
 
@@ -19,8 +15,6 @@ public class PrFileMask implements Comparable<PrFileMask> {
     @XmlAttribute
     private PrDirType prDirType;
 
-    private Pattern pattern;
-
     public int getPriority() {
         return priority;
     }
@@ -29,22 +23,12 @@ public class PrFileMask implements Comparable<PrFileMask> {
         return prDirType;
     }
 
-    /**
-     * Подпадает ли данный файл под маску?
-     */
-    public boolean accept(File prFile) {
-        if (pattern == null) {
-            pattern = Pattern.compile(mask);
-        }
-        return pattern.matcher(prFile.getName()).matches();
-    }
-
     @Override
     public int compareTo(PrFileMask o) {
         return Integer.valueOf(getPriority()).compareTo(o.getPriority());
     }
 
     public enum PrDirType {
-        FOLDER, FILE;
+        FOLDER, FILE
     }
 }

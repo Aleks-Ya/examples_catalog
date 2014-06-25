@@ -1,6 +1,7 @@
 package examplescatalog;
 
 import examplescatalog.catalog.CatalogTest;
+import examplescatalog.settings.FileMask;
 import examplescatalog.settings.PrFileMask;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +36,7 @@ public class MaskConfig {
     }
 
     private PrFileMask makeMask(String maskStr, int priority) throws NoSuchFieldException, IllegalAccessException {
-        Field maskField = PrFileMask.class.getDeclaredField("mask");
+        Field maskField = FileMask.class.getDeclaredField("mask");
         maskField.setAccessible(true);
 
         Field priorityField = PrFileMask.class.getDeclaredField("priority");

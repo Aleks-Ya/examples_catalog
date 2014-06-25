@@ -17,4 +17,6 @@ public interface ISettings {
     String getIntellijIdeaPath();
 
     String getDefCmd();
+
+    List<FileMask> getExcludes();
 }

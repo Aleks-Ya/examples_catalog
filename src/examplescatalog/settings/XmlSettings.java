@@ -35,6 +35,9 @@ class XmlSettings implements ISettings {
     @XmlElementWrapper(name = "prFileMasks")
     @XmlElement(name = "mask")
     private List<PrFileMask> masks;
+    @XmlElementWrapper(name = "exclude")
+    @XmlElement(name = "mask")
+    private List<FileMask> excludes;
 
     public static XmlSettings getInstance(String xmlSettingsFile, String xsdFile) throws SettingsException {
         File xml = new File(xmlSettingsFile);
@@ -90,5 +93,10 @@ class XmlSettings implements ISettings {
     @Override
     public String getDefCmd() {
         return defCmd;
+    }
+
+    @Override
+    public List<FileMask> getExcludes() {
+        return excludes;
     }
 }

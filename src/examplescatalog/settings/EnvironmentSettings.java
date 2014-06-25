@@ -30,6 +30,7 @@ class EnvironmentSettings implements ISettings {
     private String intellijIdeaPathEnvironment;
     @Value("#{envMap}")
     private Map<String, String> envMap;
+    private List<FileMask> excludes;
 
     @PostConstruct
     private void init() {
@@ -37,6 +38,7 @@ class EnvironmentSettings implements ISettings {
         prIdFilename = parent.getPrIdFilename();
         defCmd = parent.getDefCmd();
         masks = parent.getPrFileMasks();
+        excludes = parent.getExcludes();
 
         String exampleRootEnv = envMap.get(examplesRootEnvironment);
         examplesRoot = (StringUtils.isEmpty(exampleRootEnv)) ? parent.getExamplesRoot() : exampleRootEnv;
@@ -73,5 +75,10 @@ class EnvironmentSettings implements ISettings {
     @Override
     public String getDefCmd() {
         return defCmd;
+    }
+
+    @Override
+    public List<FileMask> getExcludes() {
+        return excludes;
     }
 }

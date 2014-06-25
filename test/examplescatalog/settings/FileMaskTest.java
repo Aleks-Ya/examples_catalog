@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-public class PrFileMaskTest {
+public class FileMaskTest {
 
     private static AnnotationConfigApplicationContext context;
 
@@ -26,12 +26,12 @@ public class PrFileMaskTest {
 
     @Test
     public void accept() throws Exception {
-        Field maskField = PrFileMask.class.getDeclaredField("mask");
+        Field maskField = FileMask.class.getDeclaredField("mask");
         maskField.setAccessible(true);
 
-        PrFileMask imlMask = (PrFileMask) context.getBean("imlMask", 0);
-        PrFileMask mavenMask = (PrFileMask) context.getBean("mavenMask", 0);
-        PrFileMask gradleMask = (PrFileMask) context.getBean("gradleMask", 0);
+        FileMask imlMask = (FileMask) context.getBean("imlMask", 0);
+        FileMask mavenMask = (FileMask) context.getBean("mavenMask", 0);
+        FileMask gradleMask = (FileMask) context.getBean("gradleMask", 0);
 
         File imlFile = new File("dir/ExemplesCatalog.iml");
         File gradleFile = new File("dir/build.gradle");
