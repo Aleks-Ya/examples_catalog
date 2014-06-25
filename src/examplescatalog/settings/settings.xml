@@ -2,15 +2,15 @@
 <settings port="2512" prIdFilename="ExamplesCatalog.properties" defCmd="explore">
     <prFileMasks>
         <mask mask=".*.iml" priority="3" prDirType="FOLDER"/>
-        <mask mask=".*.gradle" priority="2"  prDirType="FILE"/>
-        <mask mask="pom.xml" priority="1"  prDirType="FILE"/>
+        <mask mask=".*.gradle" priority="2" prDirType="FILE"/>
+        <mask mask="pom.xml" priority="1" prDirType="FILE"/>
     </prFileMasks>
     <exclude>
-        <mask>.git</mask>
-        <mask>.idea</mask>
-        <mask>.gradle</mask>
-        <mask>classes</mask>
-        <mask>out</mask>
-        <mask>build</mask>
+        <mask mask="\\.git"/>
+        <mask mask="\\.idea"/>
+        <mask mask="\\.gradle"/>
+        <mask mask="classes"/>
+        <mask mask="out"/>
+        <mask mask="build"/>
     </exclude>
 </settings>

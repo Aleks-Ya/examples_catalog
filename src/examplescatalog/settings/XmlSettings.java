@@ -26,15 +26,20 @@ import java.util.List;
 @XmlRootElement(name = "settings")
 @SuppressWarnings("unused")
 class XmlSettings implements ISettings {
+
     @XmlAttribute
     private int port;
+
     @XmlAttribute
     private String prIdFilename;
+
     @XmlAttribute
     private String defCmd;
+
     @XmlElementWrapper(name = "prFileMasks")
     @XmlElement(name = "mask")
     private List<PrFileMask> masks;
+
     @XmlElementWrapper(name = "exclude")
     @XmlElement(name = "mask")
     private List<FileMask> excludes;

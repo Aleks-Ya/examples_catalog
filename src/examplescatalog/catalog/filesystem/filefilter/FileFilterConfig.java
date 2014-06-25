@@ -25,4 +25,9 @@ class FileFilterConfig {
     public FilenameFilter getPrIdFF() {
         return new PrIdFileFilter();
     }
+
+    @Bean(name = "excludeFileFilter")
+    public FileFilter getExcludeFF() {
+        return new ExcludeFileFilter();
+    }
 }

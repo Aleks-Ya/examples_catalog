@@ -9,7 +9,6 @@ import java.io.IOException;
 
 /**
  * Составляет Catalog по папке с проектами.
- * todo Исключить из сканирования папки .git, .idea,. classes, out, .gradle.
  */
 @Component
 public class PrFolderScanner {

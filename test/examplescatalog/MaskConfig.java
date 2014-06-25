@@ -35,6 +35,12 @@ public class MaskConfig {
         return makeMask(".*.gradle", priority);
     }
 
+    @Bean
+    @Scope("prototype")
+    public PrFileMask gitMask() throws NoSuchFieldException, IllegalAccessException {
+        return makeMask("\\.git", 0);
+    }
+
     private PrFileMask makeMask(String maskStr, int priority) throws NoSuchFieldException, IllegalAccessException {
         Field maskField = FileMask.class.getDeclaredField("mask");
         maskField.setAccessible(true);

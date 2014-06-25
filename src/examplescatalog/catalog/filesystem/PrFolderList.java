@@ -26,6 +26,10 @@ class PrFolderList {
 
     @Value("#{prFileFilter}")
     private FileFilter prFileFilter;
+
+    @Value("#{excludeFileFilter}")
+    private FileFilter excludesFileFilter;
+
     private List<File> prFolders = new ArrayList<>();
 
     @Value("#{settings.examplesRoot}")
@@ -40,15 +44,29 @@ class PrFolderList {
     }
 
     private void processDir(File dir, int counter) {
-        counter++;
-        File[] prFiles = dir.listFiles(prFileFilter);
-        if (prFiles.length > 0) {
-            prFolders.add(dir);
-        }
+        if (!excludeDir(dir)) {
+            counter++;
+            File[] prFiles = dir.listFiles(prFileFilter);
+            if (prFiles.length > 0) {
+                prFolders.add(dir);
+            }
 
-        File[] subDirs = dir.listFiles(dirFileFilter);
-        for (File subDir : subDirs) {
-            processDir(subDir, counter);
+            File[] subDirs = dir.listFiles(dirFileFilter);
+            for (File subDir : subDirs) {
+                processDir(subDir, counter);
+            }
+        }
+    }
+
+    /**
+     * Папка подпадает под исключения?
+     */
+    private boolean excludeDir(File dir) {
+        if (excludesFileFilter.accept(dir)) {
+            LOG.debug("Exclude dir: {}", dir.getAbsoluteFile());
+            return true;
+        } else {
+            return false;
         }
     }
 
