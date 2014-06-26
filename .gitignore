@@ -2,3 +2,5 @@
 *.vpp~*
 classes
 *.iml
+.gradle
+build
