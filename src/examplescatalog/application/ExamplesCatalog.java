@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * todo Добавить в идентификационный файл свойство ignore=true для пропуска проекта в данной папке (или ignoreSubDirs), чтобы вложенные проекты не воспринимались каталогом
  * todo Добавить теги в идентификационный файл проекта
  * todo Сделать корневой папкой проекта по-умолчанию папку ~/examples_catalog
+ * todo Проверка prId на уникальность
  */
 public class ExamplesCatalog {
     private static final Logger LOG = LoggerFactory.getLogger(ExamplesCatalog.class);
